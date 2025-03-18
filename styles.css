@@ -133,7 +133,6 @@ nav a {
     font-size: 18px;
     color: #ffffff;
     padding: 5px 15px;
-    border-radius: 5px;
     display: inline-block;
     text-align: center;
     letter-spacing: 1px;
@@ -353,7 +352,6 @@ nav a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px;
     position: absolute;
     opacity: 0;
     transition: opacity 1s ease-in-out;
@@ -436,7 +434,6 @@ h2 {
     background-color: #f3f3f3;
     padding: 15px;
     margin: 5px 0;
-    border-radius: 8px;
     transition: margin-bottom 1s ease-in-out;
     text-align: left; /* Вирівнюємо текст по лівому краю */
     z-index: 1001;
@@ -459,7 +456,6 @@ h2 {
     background-color: #dcdcdc;
     transition: background-color 0.3s ease-out;
     text-align: left;
-    border-radius: 8px;
 }
 
 .nested-accordion dt:hover {
@@ -491,7 +487,6 @@ h2 {
     width: calc(100% - 40px); /* Робимо контент пропорційним до батьківського акордеону */
     margin-left: 0px; /* Вирівнюємо по лівому краю батьківського акордеону */
     padding: 10px;
-    border-radius: 8px ;
 }
 
 /* Стиль для видимого вмісту вкладок */
@@ -595,7 +590,6 @@ h2 {
     position: relative;
     height: 250px;
     overflow: hidden;
-    border-radius: 8px;
     border: 1px solid #e0e0e0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -628,7 +622,6 @@ h2 {
     background-color: #9d182f;
     color: white;
     text-decoration: none;
-    border-radius: 5px;
     font-weight: bold;
     text-align: center;
     transition: all 0.3s ease;
@@ -668,7 +661,6 @@ body {
     justify-content: center;
     background: white;
     padding: 20px;
-    border-radius: 10px;
     position: relative;
     width: 100%;
     max-width: 1440px;
@@ -722,8 +714,6 @@ body {
     justify-content: center;
     text-align: left;
     background: #fff;
-    border-radius: 8px;
-
 }
 
 .slider-container {
@@ -743,7 +733,6 @@ body {
     flex-shrink: 0;
     margin-right: 20px;
     position: relative;
-    border-radius: 8px;
     overflow: hidden;
 }
 
