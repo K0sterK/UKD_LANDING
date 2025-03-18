@@ -1,160 +1,274 @@
-/*header*/
+
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap');
 
-body {
-    font-family: 'Arial', serif;
-    
-}
-body {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0;
-}
 
-@media (max-width: 1440px) {
-    body {
-        padding: 0 20px; /* Додає відступи на менших екранах */
+body {
+    font-family: 'Gotham Pro', sans-serif;
+}
+@media (max-width: 768px) { 
+    .container {
+        height: 60vh;
+    }
+
+    .overlay h1 {
+        font-size: 24px;
+    }
+
+    .overlay p {
+        font-size: 16px;
+    }
+
+    .slider-container {
+        width: 100%;
+    }
+
+    .slide {
+        width: 100%;
+        height: auto;
+    }
+
+    .text-block {
+        width: 100%;
     }
 }
 /*Хедер прокруток*/
 header {
     font-size: 20px;
-    background: #951825;
+    background: #9d182f;
     color: #fff;
     padding: 10px 20px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: center; /* Вирівнювання по центру вертикально */
+    justify-content: space-between; /* Повертаємо простір між елементами */
     position: fixed;  /* Закріплюємо хедер */
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;  /* Щоб був поверх інших елементів */
     transition: all 0.3s ease; /* Плавна анімація */
+    overflow: hidden;
 }
 
-header.shrink {
-    padding: 5px 20px; /* Менший відступ при скролі */
-    background: rgba(149, 24, 37, 0.9); /* Трохи прозорий */
+header.hidden {
+    transform: translateY(-90%);
 }
 
-
-        body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-}
-
-header {
-    font-size: 25px;
-    background: #951825;
-    color: #fff;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.ukd-logo {
-    margin-left: 80px;
-}
-
-.ukd-logo img {
-    height: 80px;
-}
-
-nav {
-    flex-grow: 1;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 10px;
-}
-
-nav a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.button {
-    background: white;
-    color: #951825;
-    padding: 6px 12px;
-    border-radius: 8px;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    margin-right: 80px;
-}
-
-.container {
-    position: relative;
-    width: 100%;
-    height: 80vh;
-    background: url('https://assets.onecompiler.app/437qvk2xj/437yqvjd3/%D0%B1%D0%BB%D0%BE%D0%BA%20%D1%82%D1%80%D1%83%D0%B4-01.png') no-repeat center center/cover;
-    margin-bottom: 70px;
-}
-
-.overlay {
+/* Тонка полоска для вказівки на хедер */
+header::after {
+    content: '';
     position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: #9d182f;
+    border-radius: 10%;
+}
+
+/* Розширюємо зону ховеру */
+.header-hover-zone {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    height: 30px; /* Зона ховеру більша за лінію, але непомітна */
+    background: transparent;
+    z-index: 999;
+}
+
+header:hover, .header-hover-zone:hover + header {
+    transform: translateY(0);
+}
+
+body {
+    font-family: 'Gotham Pro', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden; /* Також прибираємо горизонтальний скрол для тіла */
+}
+
+/*Лого в хедері*/
+.ukd-logo {
+    margin-left: 15px;
+    padding-left: 15px; /* Додатковий відступ перед лінією */
+    border-left: 2px solid white; /* Білий колір лінії */
+}
+
+.ukd-logo img {
+    height: 70px;
+    display: flex;
+}
+
+/*Розміщення тексту в сторонах*/
+nav {
+    flex-grow: 1;
+    text-align: right;
+}
+
+/*Розміщення текста в лінію*/
+nav ul li {
+    display: inline;
+    margin: 5px;
+    font-family: 'Gotham Pro', sans-serif;
+}
+
+/*Текст хедера*/
+nav a {
+    color: #ffffff;
+    text-decoration: double;
+    font-size: 20px;
+}
+
+.phone-numbers {
+    display: flex;
+    justify-content: flex-start; /* Вирівнюємо по лівому краю */
+    align-items: center; /* Вирівнюємо по вертикалі */
+    gap: 15px; /* Відстань між номерами */
+    margin-left: 20px; /* Відступ від краю */
+}
+
+/* Стилізація номерів */
+.phone-numbers a {
+    font-size: 18px;
+    color: #ffffff;
+    padding: 5px 15px;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.phone-numbers a:hover {
+    background: rgba(255, 255, 255, 0.4);
+    color: #fff;
+}
+/* Вертикальна навігація */
+.vertical-nav {
+    position: fixed;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.vertical-nav.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.vertical-nav ul {
+    list-style: none;
     display: flex;
     flex-direction: column;
+    gap: 24px;
+}
+
+.vertical-nav li {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    color: white;
-    padding: 20px;
-    text-align: center;
 }
 
-.logo {
-    width: 150px;
-    height: auto;
-    margin-bottom: 20px;
+.vertical-nav a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #666;
 }
 
-.title {
-    font-size: 25px;
-    font-weight: bold;
-    margin-top: 10px;
+.nav-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #aaa;
+    margin-right: 12px;
+    transition: all 0.3s ease;
 }
 
-.subtitle {
-    font-size: 18px;
+.nav-text {
+    font-size: 14px;
+    transition: all 0.3s ease;
 }
-        .logo {
-            width: 150px;
-            height: auto;
-            margin-bottom: 20px;
-        }
-        .about-section {
-            padding: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: #031749;
-        }
-        .about-image img {
-            width: 500px;
-            height: 640px;
-            border-radius: 15px;
-            object-fit: cover;
-          
-        }
+
+/* Активний стан навігації */
+.vertical-nav a.active .nav-dot {
+    width: 16px;
+    height: 16px;
+    background-color: #9d182f; /* Колір як у хедера */
+}
+
+.vertical-nav a.active .nav-text {
+    color: #9d182f;
+    font-weight: 500;
+    transform: scale(1.1);
+    transform-origin: left;
+}
+
+/* Ефект при наведенні для неактивних елементів */
+.vertical-nav a:not(.active):hover .nav-dot {
+    background-color: #666;
+}
+
+.vertical-nav a:not(.active):hover .nav-text {
+    color: #333;
+}    /* ======= СТИЛІ ДЛЯ ГОЛОВНОЇ СЕКЦІЇ ======= */
+    main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: url('src/MainMenu.jpg') no-repeat center center/cover;
+        background-size: cover;
+        text-align: center;
+        width: 100%;
+        position: relative;
+    }
+    
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 100vh;
+        position: relative;
+    }
+    
+    .logo {
+        width: 190px; /* Розмір логотипа */
+        height: 190px;
+        background-image: url('src/Red-Vertical_logo.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 20%; /* Позиція логотипа */
+    }
+    
+    .title {
+        margin-top: 30px;
+        position: absolute;
+        top: 40%; /* Розташування заголовка */
+        font-size: 42px;
+        font-weight: bold;
+        color: white;
+        white-space: nowrap;
+         /* Обмеження ширини для адаптивності */
+    }
+    
+    .subtitle {
+        margin-top: 30px;
+        position: absolute;
+        top: 50%; /* Розташування підзаголовка */
+        font-size: 25px;
+        color: white;
+        white-space: nowrap;
+         /* Обмеження ширини для адаптивності */
+    }
     
     /*About ukd*/
     
@@ -170,6 +284,7 @@ nav a {
     opacity: 0;
     transform: translateY(50px);
     transition: all 0.8s ease-in-out;
+    margin: auto;
 }
 
     .about-content {
@@ -196,19 +311,6 @@ nav a {
         justify-content: space-between;
         gap: 40px;
         margin-top: 20px;
-    }
-
-    .about-mission, .about-values {
-        flex: 1;
-        max-width: 280px;
-        
-    }
-
-    .about-mission h3, .about-values h3 {
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        color: #031749;
     }
 
     .about-mission p, .about-values ul {
@@ -273,6 +375,7 @@ h2 {
     text-align: center;
     margin: 0 auto;
     width: 80%; /* Adjust as necessary */
+    z-index: 1001;
 }
 
 /* Center the buttons */
@@ -307,30 +410,36 @@ h2 {
 .tab-content {
     display: none;
     width: 100%;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 /* Active tab content */
 .tab-content.active {
     display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Основні стилі для акордеону */
 /* Основний контейнер акордеону */
 .accordion {
-    margin-left: 80px; /* Відступи для всього акордеону */
-    margin-right: 80px;
+    width: 80%; /* Відступи для всього акордеону*/
+    margin:0 auto;
 }
 
 /* Заголовки акордеону */
 .accordion dt {
     font-weight: bold;
     cursor: pointer;
-    background-color: #f0f0f0;
+    background-color: #f3f3f3;
     padding: 15px;
     margin: 5px 0;
     border-radius: 8px;
     transition: margin-bottom 1s ease-in-out;
     text-align: left; /* Вирівнюємо текст по лівому краю */
+    z-index: 1001;
 }
 
 /* Ховер ефект */
@@ -445,9 +554,103 @@ h2 {
 
 .section.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: trans
+    lateY(0);
 }
-/*gallery*/
+.split-content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Ліва частина з текстом */
+.content-text {
+    flex: 1;
+    min-width: 0;
+    padding: 15px;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-text p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.content-text ul {
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.content-text ul li {
+    margin-bottom: 8px;
+}
+
+/* Права частина з галереєю */
+.content-gallery {
+    flex: 1;
+    margin-top: 20px;
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Стилі для слайдера в акордеоні */
+.accordion-slider {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.accordion-slide {
+    min-width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.accordion-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Стилі для кнопки "Детальніше" */
+.details-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #9d182f;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    align-self: flex-start;
+}
+
+.details-link:hover {
+    background-color: #7a1023;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Покращення ховер-ефекту для заголовків акордеону */
+.accordion dt:hover, 
+.nested-accordion dt:hover {
+    background-color: #9d182f;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+/*===================gallery=============*/
 * {
     margin: 0;
     padding: 0;
@@ -455,8 +658,7 @@ h2 {
 }
 
 body {
-    font-family: Arial, sans-serif;
-    
+    font-family: 'Gotham Pro', sans-serif;    
 }
 
 .gallery-container {
@@ -470,7 +672,7 @@ body {
     position: relative;
     width: 100%;
     max-width: 1440px;
-    
+    margin: auto;
 }
 
 .controls {
@@ -625,13 +827,7 @@ section.visible {
   transform: translateY(0);
   opacity: 1;
 }
-body {
-    align-items: center;
-    background: #E3E3E3;
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-}
+
 
 @keyframes scroll {
     0% { transform: translateX(0); }
@@ -679,3 +875,747 @@ footer {
             max-width: 100%;
         }
     }
+    /* ===== АДАПТИВНІ СТИЛІ ДЛЯ ВСЬОГО САЙТУ ===== */
+
+/* Великі екрани (десктопи) */
+@media (max-width: 1400px) {
+    .slider-container {
+        width: 700px;
+    }
+    
+    .slide {
+        width: 650px;
+    }
+    
+    .controls {
+        margin-right: 100px;
+    }
+    
+    .about-image {
+        width: 450px;
+        height: 500px;
+    }
+}
+
+/* Середні екрани (ноутбуки) */
+@media (max-width: 1200px) {
+    /* Хедер */
+    header {
+        font-size: 18px;
+        padding: 8px 15px;
+    }
+    
+    .ukd-logo img {
+        height: 60px;
+    }
+    
+    .phone-numbers a {
+        font-size: 16px;
+        padding: 4px 12px;
+    }
+    
+    /* Вертикальна навігація */
+    .vertical-nav {
+        left: 15px;
+    }
+    
+    .nav-dot {
+        width: 10px;
+        height: 10px;
+        margin-right: 10px;
+    }
+    
+    .vertical-nav a.active .nav-dot {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .nav-text {
+        font-size: 13px;
+    }
+    
+    /* Головна секція */
+    .title {
+        font-size: 36px;
+    }
+    
+    .subtitle {
+        font-size: 22px;
+    }
+    
+    .logo {
+        width: 160px;
+        height: 160px;
+    }
+    
+    /* Секція про нас */
+    .about-section {
+        padding: 30px;
+        flex-direction: row;
+    }
+    
+    .about-content {
+        max-width: 450px;
+    }
+    
+    .about-image {
+        width: 400px;
+        height: 450px;
+    }
+    
+    /* Галерея */
+    .slider-container {
+        width: 600px;
+    }
+    
+    .slide {
+        width: 550px;
+        height: 450px;
+    }
+    
+    .text-block {
+        width: 250px;
+        height: 450px;
+    }
+    
+    .controls {
+        margin-right: 80px;
+    }
+    
+    /* Акордеон */
+    .accordion {
+        margin-left: 60px;
+        margin-right: 60px;
+    }
+}
+
+/* Планшети */
+@media (max-width: 992px) {
+    /* Хедер */
+    header {
+        font-size: 16px;
+        padding: 8px 10px;
+    }
+    
+    .ukd-logo img {
+        height: 50px;
+    }
+    
+    .phone-numbers {
+        gap: 10px;
+        margin-left: 10px;
+    }
+    
+    .phone-numbers a {
+        font-size: 14px;
+        padding: 3px 10px;
+    }
+    
+    /* Вертикальна навігація */
+    .vertical-nav {
+        left: 10px;
+    }
+    
+    .vertical-nav ul {
+        gap: 20px;
+    }
+    
+    /* Головна секція */
+    .title {
+        font-size: 32px;
+    }
+    
+    .subtitle {
+        font-size: 20px;
+    }
+    
+    .logo {
+        width: 140px;
+        height: 140px;
+    }
+    
+    /* Секція про нас */
+    .about-section {
+        padding: 25px;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .about-content {
+        max-width: 100%;
+        padding-right: 0;
+        margin-bottom: 30px;
+    }
+    
+    .about-image {
+        width: 100%;
+        max-width: 500px;
+        height: 400px;
+    }
+    
+    /* Вкладки */
+    .tab-buttons {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .tab-buttons button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+    
+    /* Акордеон */
+    .accordion {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+    
+    .accordion dt {
+        padding: 12px;
+    }
+    
+    /* Галерея */
+    .content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .text-block {
+        width: 90%;
+        height: auto;
+        min-height: 200px;
+    }
+    
+    .slider-container {
+        width: 90%;
+    }
+    
+    .slide {
+        width: 100%;
+        height: 400px;
+    }
+    
+    .controls {
+        margin-right: 40px;
+    }
+}
+
+/* Малі планшети та великі смартфони */
+@media (max-width: 768px) {
+    /* Хедер */
+    header {
+        font-size: 14px;
+        padding: 6px 8px;
+    }
+    
+    .ukd-logo img {
+        height: 40px;
+    }
+    
+    .phone-numbers {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .phone-numbers a {
+        font-size: 12px;
+        padding: 2px 8px;
+    }
+    
+    /* Вертикальна навігація */
+    .vertical-nav {
+        left: 10px;
+    }
+    
+    .vertical-nav ul {
+        gap: 16px;
+    }
+    
+    .nav-dot {
+        width: 8px;
+        height: 8px;
+        margin-right: 8px;
+    }
+    
+    .vertical-nav a.active .nav-dot {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .nav-text {
+        font-size: 12px;
+    }
+    
+    /* Головна секція */
+    .title {
+        font-size: 28px;
+        white-space: normal;
+        text-align: center;
+        width: 90%;
+    }
+    
+    .subtitle {
+        font-size: 18px;
+        white-space: normal;
+        text-align: center;
+        width: 90%;
+    }
+    
+    .logo {
+        width: 120px;
+        height: 120px;
+    }
+    
+    /* Секція про нас */
+    .about-section {
+        padding: 20px;
+    }
+    
+    .about-content h2 {
+        font-size: 26px;
+    }
+    
+    .about-content p {
+        font-size: 14px;
+    }
+    
+    .about-image {
+        height: 350px;
+    }
+    
+    /* Вкладки */
+    .tab-buttons {
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 10px;
+        white-space: nowrap;
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    
+    .tab-buttons button {
+        font-size: 13px;
+        padding: 6px 10px;
+        flex-shrink: 0;
+    }
+    
+    /* Акордеон */
+    .accordion {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    
+    .accordion dt {
+        padding: 10px;
+        font-size: 15px;
+    }
+    
+    .nested-accordion dt {
+        font-size: 14px;
+    }
+    
+    .nested-accordion dd {
+        font-size: 13px;
+    }
+    
+    /* Галерея */
+    .gallery-container {
+        padding: 15px;
+    }
+    
+    .slide {
+        height: 350px;
+    }
+    
+    .controls {
+        margin-right: 20px;
+    }
+    
+    .controls button {
+        width: 35px;
+        height: 35px;
+    }
+    
+    /* Футер */
+    .footer-container {
+        padding: 0 20px;
+    }
+}
+
+/* Смартфони */
+@media (max-width: 576px) {
+    /* Хедер */
+    header {
+        padding: 5px;
+    }
+    
+    .ukd-logo img {
+        height: 35px;
+    }
+    
+    nav ul li {
+        margin: 3px;
+    }
+    
+    nav a {
+        font-size: 12px;
+    }
+    
+    /* Вертикальна навігація */
+    .vertical-nav {
+        left: 5px;
+    }
+    
+    .vertical-nav ul {
+        gap: 14px;
+    }
+    
+    .nav-text {
+        display: none; /* Приховуємо текст на малих екранах */
+    }
+    
+    .nav-dot {
+        margin-right: 0;
+        width: 10px;
+        height: 10px;
+    }
+    
+    .vertical-nav a.active .nav-dot {
+        width: 14px;
+        height: 14px;
+    }
+    
+    /* Головна секція */
+    .title {
+        font-size: 24px;
+        top: 45%;
+    }
+    
+    .subtitle {
+        font-size: 16px;
+        top: 55%;
+    }
+    
+    .logo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    /* Секція про нас */
+    .about-section {
+        padding: 15px;
+    }
+    
+    .about-content h2 {
+        font-size: 22px;
+    }
+    
+    .about-content p {
+        font-size: 13px;
+    }
+    
+    .about-image {
+        height: 300px;
+    }
+    
+    /* Вкладки */
+    .section-title h2 {
+        font-size: 22px;
+    }
+    
+    .tab-buttons button {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+    
+    /* Акордеон */
+    .accordion {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    
+    .accordion dt {
+        padding: 8px;
+        font-size: 14px;
+    }
+    
+    .nested-accordion dt {
+        font-size: 13px;
+    }
+    
+    .nested-accordion dd {
+        font-size: 12px;
+        width: calc(100% - 20px);
+    }
+    
+    .accordion dd.active, .nested-accordion dd.active {
+        width: calc(100% - 20px);
+        padding: 8px;
+    }
+    
+    /* Галерея */
+    .gallery-container {
+        padding: 10px;
+    }
+    
+    .text-block {
+        padding: 15px;
+        min-height: 150px;
+    }
+    
+    .text-block h3 {
+        font-size: 18px;
+    }
+    
+    .text-block p {
+        font-size: 13px;
+    }
+    
+    .slide {
+        height: 250px;
+    }
+    
+    .controls {
+        margin-right: 10px;
+    }
+    
+    .controls button {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+    
+    .overlay h3 {
+        font-size: 18px;
+    }
+    
+    .overlay p {
+        font-size: 14px;
+    }
+    
+    /* Футер */
+    footer {
+        padding: 15px 0;
+    }
+    
+    .footer-contacts h3 {
+        font-size: 18px;
+    }
+    
+    .footer-contacts p {
+        font-size: 13px;
+    }
+    
+    .social-icons a img {
+        width: 25px;
+        margin: 8px;
+    }
+    
+    .footer-map iframe {
+        height: 200px;
+    }
+}
+
+/* Малі смартфони */
+@media (max-width: 480px) {
+    /* Хедер */
+    header {
+        flex-direction: column;
+        padding: 5px 0;
+    }
+    
+    .phone-numbers {
+        order: 2;
+        margin: 5px 0;
+    }
+    
+    .ukd-logo {
+        order: 1;
+        margin: 5px 0;
+        border-left: none;
+        padding-left: 0;
+    }
+    
+    nav {
+        order: 3;
+        text-align: center;
+    }
+    
+    nav ul {
+        padding: 0;
+    }
+    
+    nav ul li {
+        margin: 2px;
+    }
+    
+    /* Вертикальна навігація */
+    .vertical-nav {
+        left: 5px;
+    }
+    
+    .vertical-nav ul {
+        gap: 12px;
+    }
+    
+    /* Головна секція */
+    .title {
+        font-size: 20px;
+        top: 45%;
+    }
+    
+    .subtitle {
+        font-size: 14px;
+        top: 55%;
+    }
+    
+    .logo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    /* Секція про нас */
+    .about-section {
+        padding: 10px;
+    }
+    
+    .about-content h2 {
+        font-size: 20px;
+    }
+    
+    .about-content p {
+        font-size: 12px;
+    }
+    
+    .about-image {
+        height: 250px;
+    }
+    
+    /* Вкладки */
+    .section-title h2 {
+        font-size: 20px;
+    }
+    
+    /* Акордеон */
+    .accordion {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    
+    /* Галерея */
+    .slide {
+        height: 200px;
+    }
+}
+
+/* Дуже малі екрани */
+@media (max-width: 320px) {
+    /* Хедер */
+    .ukd-logo img {
+        height: 30px;
+    }
+    
+    nav a {
+        font-size: 11px;
+    }
+    
+    /* Вертикальна навігація */
+    .vertical-nav {
+        left: 3px;
+    }
+    
+    .vertical-nav ul {
+        gap: 10px;
+    }
+    
+    .nav-dot {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .vertical-nav a.active .nav-dot {
+        width: 12px;
+        height: 12px;
+    }
+    
+    /* Головна секція */
+    .title {
+        font-size: 18px;
+    }
+    
+    .subtitle {
+        font-size: 12px;
+    }
+    
+    /* Галерея */
+    .slide {
+        height: 180px;
+    }
+    
+    .controls button {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+    }
+}
+
+/* Для пристроїв з сенсорним екраном - збільшуємо область натискання */
+@media (pointer: coarse) {
+    /* Вертикальна навігація */
+    .vertical-nav a {
+        padding: 5px;
+    }
+    
+    .nav-dot {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .vertical-nav a.active .nav-dot {
+        width: 16px;
+        height: 16px;
+    }
+    
+    /* Кнопки та інтерактивні елементи */
+    .tab-buttons button,
+    .controls button,
+    .accordion dt,
+    .nested-accordion dt,
+    nav a,
+    .phone-numbers a {
+        padding: 10px;
+        min-height: 44px; /* Мінімальна висота для зручного натискання */
+    }
+    
+    /* Збільшуємо відступи для акордеону */
+    .accordion dt {
+        padding: 12px;
+    }
+}
+
+/* Орієнтація екрану */
+@media (orientation: landscape) and (max-height: 500px) {
+    /* Зменшуємо висоту головної секції для ландшафтної орієнтації на малих екранах */
+    main, .container {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .logo {
+        position: relative;
+        top: 10%;
+        margin: 20px auto;
+    }
+    
+    .title {
+        position: relative;
+        top: auto;
+        margin: 10px auto;
+    }
+    
+    .subtitle {
+        position: relative;
+        top: auto;
+        margin: 10px auto;
+    }
+}

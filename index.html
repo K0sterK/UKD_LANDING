@@ -3,39 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
     <title>UKD</title>
-    
+    <link rel="preload" href="fonts/GothamPro-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/GothamPro-Bold.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="script.js"></script>
-    <header>
-        <div class="ukd-logo">
-            <img src="https://assets.onecompiler.app/437qvk2xj/437yqvjd3/image%20(1).png" alt="LOGO UKD">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#about">Про нас</a></li>
-                <li><a href="#specialties">Спеціальності</a></li>
-                <li><a href="#gallery">Галерея</a></li>
-                <li><a href="#contacts">Контакти</a></li>
-            </ul>
-        </nav>
-        <button class="button">Вступ</button>
-    </header>
-
-    <div class="container">
-        <div class="overlay">
-            <img src="https://assets.onecompiler.app/437qvk2xj/437qvj9fm/image.png" alt="Логотип" class="logo">
-            <h1 class="title">УНІВЕРСИТЕТ КОРОЛЯ ДАНИЛА</h1>
-            <p class="subtitle">ПРОСТІР ФОРМУВАННЯ УСПІШНИХ</p>
-        </div>
+<header>
+    <div class="phone-numbers">
+        <a href="#number1">+380(98) 755 75 75</a>
+        <a href="#number2">+380(98) 755 75 75</a>
     </div>
-
-
-
-
+    <nav> 
+        <ul>
+            <li><a href="#about">Про нас</a></li>
+            <li><a href="#specialties">Спеціальності</a></li>
+            <li><a href="#gallery">Галерея</a></li>
+            <li><a href="#contacts">Контакти</a></li>
+        </ul>
+    </nav>
+    <div class="ukd-logo">
+        <img src="src/White-horizontal logo.png" alt="LOGO UKD">
+    </div>
+</header>
+<nav class="vertical-nav">
+    <ul>
+        <li><a href="#about"><span class="nav-dot"></span><span class="nav-text">Про нас</span></a></li>
+        <li><a href="#specialties"><span class="nav-dot"></span><span class="nav-text">Спеціальності</span></a></li>
+        <li><a href="#gallery"><span class="nav-dot"></span><span class="nav-text">Галерея</span></a></li>
+        <li><a href="#contacts"><span class="nav-dot"></span><span class="nav-text">Контакти</span></a></li>
+    </ul>
+</nav>
+          
+            <main>
+                <div class="container">
+                    <div class="logo"></div>
+                    <h1 class="title">УНІВЕРСИТЕТ КОРОЛЯ ДАНИЛА</h1>
+                    <p class="subtitle">ПРОСТІР ФОРМУВАННЯ УСПІШНИХ</p>
+                </div>
+            </main>
     <section id="about" class="about-section">
         <div class="about-content">
             <h2>Університет Короля Данила</h2>
@@ -67,14 +75,41 @@
         <div class="tab-content-container">
             <div class="tab-content" id="college">
                 <dl class="accordion">
-                    <dt>Кафедра Дизайну</dt>
+                    <dt>Комп'ютерні науки</dt>
                     <dd>
                         <dl class="nested-accordion">
-                            <dt>Дизайн</dt>
-                            <dd>Дизайн – це сфера естетичного осмислення всього, що нас оточує. З огляду на поєднання мистецтва та інженерії дизайн здатен передавати важливі меседжі. Випускники кафедри можуть працювати в дизайн-студіях, брендингових та рекламних агентствах, видавництвах,  дизайн-центрах, творчих спілках та організаціях і на будь-яких державних підприємствах або приватних фірмах.</dd>
+                            <dt>Інженерія програмного забезпечення</dt>
+<dd>
+    <div class="split-content">
+        <div class="content-text">
+            <p>Інженерія програмного забезпечення – це галузь комп'ютерних технологій, що спеціалізується на програмному забезпеченні, його розробці, проєктуванні, тестуванні та підтримці обслуговування ПЗ. Фахівців цієї сфери цінують насамперед через знання мов кодування, уважність до деталей та схильність до кропіткої праці.</p>
+            <ul>
+                <li>Тривалість: 4 роки</li>
+                <li>Кваліфікація: Бакалавр з комп'ютерних наук</li>
+                <li>Форма навчання: денна/заочна</li>
+            </ul>
+            <a href="#" class="details-link">Детальніше</a>
+        </div>
+        <div class="content-gallery">
+            <div class="accordion-slider">
+                <div class="accordion-slide active">
+                    <img src="src/Red-horizontal logo.png" alt="Комп'ютерні науки 1">
+                </div>
+                <div class="accordion-slide">
+                    <img src="srcTest1.jpg" alt="Комп'ютерні науки 2">
+                </div>
+                <div class="accordion-slide">
+                    <img src="src/Red-horizontal logo.png" alt="Комп'ютерні науки 3">
+                </div>
+            </div>
+        </div>
+    </div>
+</dd>
+                            <!-- Інші елементи акордеону... -->
                         </dl>
                     </dd>
-                </dl>
+                </dl>      
+                    <dd>
                 <dl class="accordion">
                     <dt>Кафедра естрадно-вокального мистецтва</dt>
                     <dd>
