@@ -493,4 +493,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+$('.tab-link').click(function () {
+    var tabId = $(this).data('tab');
+    fbq('track', 'ViewContent', { content_name: tabId });
+});
+$('.accordion dt').click(function () {
+    var sectionName = $(this).text().trim();
+    fbq('track', 'ViewContent', { content_name: sectionName });
+});
+
         });
