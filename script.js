@@ -371,9 +371,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // Перевірка початкового стану
     handleVerticalNavScroll();
 });
-// Функція для зміни зображень в акордеоні (як у секції about)
-function initImageSliders() {
-    console.log("Initializing image sliders in accordions");
+function debugAccordionSliders() {
+    console.log("=== DEBUGGING ACCORDION SLIDERS ===");
+    
+    // Перевіряємо наявність слайдерів
+    const sliders = document.querySelectorAll('.accordion-slider');
+    console.log(`Found ${sliders.length} sliders on page`);
+    
+    // Перевіряємо кожен слайдер
+    sliders.forEach((slider, i) => {
+        const slides = slider.querySelectorAll('.accordion-slide');
+        console.log(`Slider ${i+1}: Found ${slides.length} slides`);
+        
+        // Перевіряємо видимість слайдера
+        const sliderVisible = slider.offsetParent !== null;
+        console.log(`Slider ${i+1} is ${sliderVisible ? 'visible' : 'hidden'}`);
+        
+        // Перевіряємо розміри слайдера
+        console.log(`Slider ${i+1} dimensions: ${slider.offsetWidth}x${slider.offsetHeight}`);
+        
+        // Перевіряємо стилі слайдів
+        slides.forEach((slide, j) => {
+            console.log(`Slide ${j+1} in slider ${i+1}:`);
+            console.log(`- Position: ${getComputedStyle(slide).position}`);
+            console.log(`- Opacity: ${getComputedStyle(slide).opacity}`);
+            console.log(`- Z-index: ${getComputedStyle(slide).zIndex}`);
+        });
+    });
+    
+    console.log("=== END DEBUGGING ===");
+}
+
+// Повністю нова функція для зміни зображень
+function setupImageRotation() {
+    console.log("Setting up image rotation for accordion sliders");
     
     // Знаходимо всі слайдери
     const sliders = document.querySelectorAll('.accordion-slider');
@@ -382,6 +413,7 @@ function initImageSliders() {
         // Очищаємо попередній інтервал, якщо він існує
         if (slider.dataset.intervalId) {
             clearInterval(parseInt(slider.dataset.intervalId));
+            console.log("Cleared previous interval");
         }
         
         // Знаходимо всі слайди в поточному слайдері
@@ -389,8 +421,11 @@ function initImageSliders() {
         
         // Якщо слайдів менше 2, немає сенсу налаштовувати ротацію
         if (slides.length < 2) {
+            console.log("Not enough slides for rotation");
             return;
         }
+        
+        console.log(`Setting up rotation for ${slides.length} slides`);
         
         // Переконуємося, що тільки перший слайд активний
         slides.forEach((slide, index) => {
@@ -405,7 +440,7 @@ function initImageSliders() {
         let currentIndex = 0;
         
         // Функція для зміни слайду
-        function changeImage() {
+        function rotateImages() {
             // Приховуємо поточний слайд
             slides[currentIndex].classList.remove('active');
             
@@ -414,42 +449,47 @@ function initImageSliders() {
             
             // Показуємо наступний слайд
             slides[currentIndex].classList.add('active');
+            
+            console.log(`Rotated to slide ${currentIndex + 1}`);
         }
         
-        // Запускаємо інтервал для зміни слайдів (3 секунди)
-        const intervalId = setInterval(changeImage, 3000);
+        // Запускаємо інтервал для зміни слайдів
+        const intervalId = setInterval(rotateImages, 3000);
         
         // Зберігаємо ID інтервалу в атрибуті data-interval-id
         slider.dataset.intervalId = intervalId;
+        
+        console.log(`Set up interval with ID ${intervalId}`);
     });
 }
 
-// Додайте цей код в кінець вашого document.ready або DOMContentLoaded обробника
+// Додайте цей код в ваш document.ready або DOMContentLoaded обробник
 document.addEventListener('DOMContentLoaded', function() {
-    // Ініціалізуємо слайдери при завантаженні сторінки
-    setTimeout(initImageSliders, 500);
+    console.log("DOM fully loaded");
     
-    // Ініціалізуємо слайдери при кліку на елементи акордеону
-    document.querySelectorAll('.accordion dt').forEach(item => {
+    // Запускаємо відлагодження
+    setTimeout(debugAccordionSliders, 1000);
+    
+    // Налаштовуємо ротацію зображень після завантаження сторінки
+    setTimeout(setupImageRotation, 1500);
+    
+    // Налаштовуємо ротацію при кліку на елементи акордеону
+    document.querySelectorAll('.accordion dt, .nested-accordion dt').forEach(item => {
         item.addEventListener('click', function() {
+            console.log("Accordion item clicked");
             // Даємо час для відображення контенту
-            setTimeout(initImageSliders, 500);
+            setTimeout(debugAccordionSliders, 500);
+            setTimeout(setupImageRotation, 1000);
         });
     });
     
-    // Ініціалізуємо слайдери при кліку на вкладений акордеон
-    document.querySelectorAll('.nested-accordion dt').forEach(item => {
-        item.addEventListener('click', function() {
-            // Даємо час для відображення контенту
-            setTimeout(initImageSliders, 500);
-        });
-    });
-    
-    // Ініціалізуємо слайдери при зміні вкладок
+    // Налаштовуємо ротацію при зміні вкладок
     document.querySelectorAll('.tab-link').forEach(tab => {
         tab.addEventListener('click', function() {
+            console.log("Tab clicked");
             // Даємо час для відображення контенту
-            setTimeout(initImageSliders, 800);
+            setTimeout(debugAccordionSliders, 500);
+            setTimeout(setupImageRotation, 1000);
         });
     });
 });
