@@ -308,7 +308,7 @@ $(document).ready(function () {
             
             // Відстеження події відкриття вкладеного акордеону
             if (!$dd.hasClass('active')) {
-                fbq('track', 'AccordionSectionOpen', { 
+                fbq('track', 'AccordionOpen', { 
                     sectionName: childSection,
                     sectionType: 'child',
                     parentSection: parentSection,
