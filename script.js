@@ -23,42 +23,42 @@ $(document).ready(function () {
     // 1. Відстеження кліків на пункти в хедері
     $('header nav a').on('click', function() {
         const section = $(this).text().trim();
-        fbq('track', 'Navigation', { section: section });
+        fbq('trackCustom', 'Navigation', { section: section });
         console.log("Header navigation click tracked:", section);
     });
 
     // 2. Відстеження кліків на номери телефонів
     $('.phone-numbers a').on('click', function() {
         const phoneNumber = $(this).text().trim();
-        fbq('track', 'Contact', { method: 'phone', content: phoneNumber });
+        fbq('trackCustom', 'Contact', { method: 'phone', content: phoneNumber });
         console.log("Phone click tracked:", phoneNumber);
     });
 
     // 3. Відстеження кліків на вертикальну навігацію
     $('.vertical-nav a').on('click', function() {
         const section = $(this).find('.nav-text').text().trim();
-        fbq('track', 'VerticalNavigation', { section: section });
+        fbq('trackCustom', 'VerticalNavigation', { section: section });
         console.log("Vertical navigation click tracked:", section);
     });
 
     // 4. Відстеження кліків на соціальні мережі справа
     $('.social-sidebar a').on('click', function() {
         const platform = $(this).attr('title');
-        fbq('track', 'SocialClick', { platform: platform });
+        fbq('trackCustom', 'SocialClick', { platform: platform });
         console.log("Social sidebar click tracked:", platform);
     });
 
     // 5. Відстеження кліків на кнопку "Детальніше" в акордеоні
     $(document).on('click', '.details-link', function() {
         var section = $(this).closest('dd').prev('dt').text().trim();
-        fbq('track', 'DetailsClick', { section: section });
+        fbq('trackCustom', 'DetailsClick', { section: section });
         console.log("Details click tracked:", section);
     });
 
     // 6. Відстеження кліків на кнопку "Детальніше" в галереї
     $(document).on('click', '.gallery-details-link', function() {
         var section = $(this).closest('.text-block').find('h3').text().trim();
-        fbq('track', 'GalleryDetailsClick', { section: section });
+        fbq('trackCustom', 'GalleryDetailsClick', { section: section });
         console.log("Gallery details click tracked:", section);
     });
 
@@ -78,7 +78,7 @@ $(document).ready(function () {
             linkType = 'link';
         }
         
-        fbq('track', 'FooterClick', { type: linkType, value: linkValue });
+        fbq('trackCustom', 'FooterClick', { type: linkType, value: linkValue });
         console.log("Footer click tracked:", linkType, linkValue);
     });
 }
@@ -199,11 +199,12 @@ $(document).ready(function () {
             
             // Відстеження події відкриття акордеону
             if (!$dd.hasClass('active')) {
-                fbq('track', 'AccordionOpen', { 
-                    section: sectionName, 
-                    level: 'main' 
+                fbq('track', 'AccordionSectionOpen', { 
+                    sectionName: sectionName,
+                    sectionType: 'parent',
+                    sectionPath: sectionName
                 });
-                console.log("Main accordion open tracked:", sectionName);
+                console.log("Parent accordion section opened:", sectionName);
             }
             
             // Оптимізована анімація з плавною появою/зникненням
@@ -307,12 +308,13 @@ $(document).ready(function () {
             
             // Відстеження події відкриття вкладеного акордеону
             if (!$dd.hasClass('active')) {
-                fbq('track', 'AccordionOpen', { 
-                    section: childSection, 
+                fbq('track', 'AccordionSectionOpen', { 
+                    sectionName: childSection,
+                    sectionType: 'child',
                     parentSection: parentSection,
-                    level: 'nested' 
+                    sectionPath: `${parentSection} > ${childSection}`
                 });
-                console.log("Nested accordion open tracked:", parentSection, ">", childSection);
+                console.log("Child accordion section opened:", parentSection, ">", childSection);
             }
             
             // Оптимізована анімація з плавною появою/зникненням
