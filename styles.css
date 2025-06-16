@@ -1,2453 +1,1997 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap");
 
 body {
-    font-family: 'Gotham Pro', sans-serif;
+  font-family: "Gotham Pro", sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
-@media (max-width: 768px) { 
-    .container {
-        height: 60vh;
-    }
 
-    .overlay h1 {
-        font-size: 24px;
-    }
-
-    .overlay p {
-        font-size: 16px;
-    }
-
-    .slider-container {
-        width: 100%;
-    }
-
-    .slide {
-        width: 100%;
-        height: auto;
-    }
-
-    .text-block {
-        width: 100%;
-    }
-}
 /*Хедер прокруток*/
 header {
-    font-size: 20px;
-    background: #9d182f;
-    color: #fff;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center; /* Вирівнювання по центру вертикально */
-    justify-content: space-between; /* Повертаємо простір між елементами */
-    position: fixed;  /* Закріплюємо хедер */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;  /* Щоб був поверх інших елементів */
-    transition: all 0.3s ease; /* Плавна анімація */
-    overflow: hidden;
+  font-size: 20px;
+  background: #9d182f;
+  color: #fff;
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-sizing: border-box;
+  min-height: 70px;
+  flex-wrap: wrap;
 }
 
 header.hidden {
-    transform: translateY(-90%);
+  transform: translateY(-90%);
 }
 
-/* Тонка полоска для вказівки на хедер */
 header::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 10px;
-    background: #9d182f;
-    border-radius: 10%;
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: #9d182f;
 }
 
-/* Розширюємо зону ховеру */
 .header-hover-zone {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 30px; /* Зона ховеру більша за лінію, але непомітна */
-    background: transparent;
-    z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: transparent;
+  z-index: 999;
 }
 
-header:hover, .header-hover-zone:hover + header {
-    transform: translateY(0);
-}
-
-body {
-    font-family: 'Gotham Pro', sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    overflow-x: hidden; /* Також прибираємо горизонтальний скрол для тіла */
+header:hover,
+.header-hover-zone:hover + header {
+  transform: translateY(0);
 }
 
 /*Лого в хедері*/
 .ukd-logo {
-    margin-left: 15px;
-    padding-left: 15px; /* Додатковий відступ перед лінією */
-    border-left: 2px solid white; /* Білий колір лінії */
+  margin-left: 15px;
+  padding-left: 15px;
+  border-left: 2px solid white;
+  flex-shrink: 0;
 }
 
 .ukd-logo img {
-    height: 70px;
-    display: flex;
+  height: 55px;
+  display: flex;
 }
 
 /*Розміщення тексту в сторонах*/
 nav {
-    flex-grow: 1;
-    text-align: right;
+  flex-grow: 1;
+  text-align: center;
 }
 
-/*Розміщення текста в лінію*/
+/*Розміщення тексту в лінію*/
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
 nav ul li {
-    display: inline;
-    margin: 5px;
-    font-family: 'Gotham Pro', sans-serif;
+  display: inline;
+  margin: 0;
+  font-family: "Gotham Pro", sans-serif;
 }
 
 /*Текст хедера*/
 nav a {
-    color: #ffffff;
-    text-decoration: double;
-    font-size: 20px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 6px 10px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .phone-numbers {
-    display: flex;
-    justify-content: flex-start; /* Вирівнюємо по лівому краю */
-    align-items: center; /* Вирівнюємо по вертикалі */
-    gap: 15px; /* Відстань між номерами */
-    margin-left: 20px; /* Відступ від краю */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
 }
 
-/* Стилізація номерів */
 .phone-numbers a {
-    font-size: 18px;
-    color: #ffffff;
-    padding: 5px 15px;
-    display: inline-block;
-    text-align: center;
-    letter-spacing: 1px;
-    text-decoration: none;
+  font-size: 14px;
+  color: #ffffff;
+  padding: 4px 8px;
+  display: inline-block;
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.3s ease;
 }
 
 .phone-numbers a:hover {
-    background: rgba(255, 255, 255, 0.4);
-    color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
 }
+
+/* ===== ПОКРАЩЕННЯ АДАПТИВНОСТІ ХЕДЕРА ===== */
+@media (max-width: 1200px) {
+  header {
+    padding: 6px 12px;
+    min-height: 65px;
+  }
+
+  .phone-numbers a {
+    font-size: 13px;
+    padding: 3px 6px;
+  }
+
+  nav a {
+    font-size: 15px;
+    padding: 5px 8px;
+  }
+
+  nav ul {
+    gap: 15px;
+  }
+
+  .ukd-logo img {
+    height: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 10px;
+    min-height: auto;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .ukd-logo {
+    order: 1;
+    margin: 0;
+    border-left: none;
+    border-bottom: 2px solid white;
+    padding-left: 0;
+    padding-bottom: 6px;
+    text-align: center;
+  }
+
+  .ukd-logo img {
+    height: 45px;
+  }
+
+  .phone-numbers {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .phone-numbers a {
+    font-size: 12px;
+    padding: 5px 10px;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .phone-numbers a:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+  }
+
+  nav {
+    order: 3;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+
+  nav ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+  }
+
+  nav ul li {
+    margin: 0;
+  }
+
+  nav a {
+    font-size: 13px;
+    padding: 6px 10px;
+    display: block;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  nav a:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .ukd-logo img {
+    height: 40px;
+  }
+
+  .phone-numbers {
+    gap: 10px;
+  }
+
+  .phone-numbers a {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  nav ul {
+    gap: 6px;
+  }
+
+  nav a {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+}
+
 /* Вертикальна навігація */
 .vertical-nav {
-    position: fixed;
-    left: 24px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1001;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
+  position: fixed;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .vertical-nav.visible {
-    opacity: 1;
-    pointer-events: auto;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .vertical-nav ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .vertical-nav li {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .vertical-nav a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #666;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #666;
 }
 
 .nav-dot {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #aaa;
-    margin-right: 12px;
-    transition: all 0.3s ease;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #aaa;
+  margin-right: 12px;
+  transition: all 0.3s ease;
 }
 
 .nav-text {
-    font-size: 14px;
-    transition: all 0.3s ease;
+  font-size: 14px;
+  transition: all 0.3s ease;
 }
 
-/* Активний стан навігації */
 .vertical-nav a.active .nav-dot {
-    width: 16px;
-    height: 16px;
-    background-color: #9d182f; /* Колір як у хедера */
+  width: 16px;
+  height: 16px;
+  background-color: #9d182f;
 }
 
 .vertical-nav a.active .nav-text {
-    color: #9d182f;
-    font-weight: 500;
-    transform: scale(1.1);
-    transform-origin: left;
+  color: #9d182f;
+  font-weight: 500;
+  transform: scale(1.1);
+  transform-origin: left;
 }
 
-/* Ефект при наведенні для неактивних елементів */
 .vertical-nav a:not(.active):hover .nav-dot {
-    background-color: #666;
+  background-color: #666;
 }
 
 .vertical-nav a:not(.active):hover .nav-text {
-    color: #333;
-}    /* ======= СТИЛІ ДЛЯ ГОЛОВНОЇ СЕКЦІЇ ======= */
-    main {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        background: url('src/MainMenu.jpg') no-repeat center center/cover;
-        background-size: cover;
-        text-align: center;
-        width: 100%;
-        position: relative;
-    }
-    
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        height: 100vh;
-        position: relative;
-    }
-    
-    .logo {
-        width: 190px; /* Розмір логотипа */
-        height: 190px;
-        background-image: url('src/Red-Vertical_logo.png');
-        background-size: contain;
-        background-repeat: no-repeat;
-        position: absolute;
-        top: 20%; /* Позиція логотипа */
-    }
-    
-    .title {
-        margin-top: 30px;
-        position: absolute;
-        top: 40%; /* Розташування заголовка */
-        font-size: 42px;
-        font-weight: bold;
-        color: white;
-        white-space: nowrap;
-         /* Обмеження ширини для адаптивності */
-    }
-    
-    .subtitle {
-        margin-top: 30px;
-        position: absolute;
-        top: 50%; /* Розташування підзаголовка */
-        font-size: 25px;
-        color: white;
-        white-space: nowrap;
-         /* Обмеження ширини для адаптивності */
-    }
-    
-    /*About ukd*/
-    
-.about-section {
-    margin-top: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px;
-    color: #031749;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease-in-out;
-    margin: auto;
+  color: #333;
 }
 
-    .about-content {
-        flex: 1;
-        padding-right: 40px;
-        max-width: 500px;
-    }
+/* ======= СТИЛІ ДЛЯ ГОЛОВНОЇ СЕКЦІЇ ======= */
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: url("src/MainMenu.jpg") no-repeat center center / cover;
+  background-size: cover;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  margin-top: 70px;
+}
 
-    .about-content h2 {
-        font-size: 32px;
-        font-weight: bold;
-        color: #16255D;
-        margin-bottom: 20px;
-    }
+@media (max-width: 768px) {
+  main {
+    margin-top: 100px;
+  }
+}
 
-    .about-content p {
-        font-size: 16px;
-        line-height: 1.6;
-        text-align: justify;
-    }
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  position: relative;
+}
 
-    .about-details {
-        display: flex;
-        justify-content: space-between;
-        gap: 40px;
-        margin-top: 20px;
-    }
+.logo {
+  width: 190px;
+  height: 190px;
+  background-image: url("src/Red-Vertical_logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 20%;
+}
 
-    .about-mission p, .about-values ul {
-        font-size: 16px;
-        line-height: 1.6;
-        text-align: justify;
-    }
+.title {
+  margin-top: 30px;
+  position: absolute;
+  top: 40%;
+  font-size: 42px;
+  font-weight: bold;
+  color: white;
+  white-space: nowrap;
+}
 
-    .about-values ul {
-        list-style: none;
-        padding: 0;
-    }
+.subtitle {
+  margin-top: 30px;
+  position: absolute;
+  top: 50%;
+  font-size: 25px;
+  color: white;
+  white-space: nowrap;
+}
 
-    .about-values li {
-        margin-bottom: 5px;
-        position: relative;
-        padding-left: 20px;
-    }
+/*About ukd*/
+.about-section {
+  margin-top: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  color: #031749;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-in-out;
+  margin: auto;
+}
 
-    .about-values li::before {
-        content: "•";
-        color: #031749;
-        font-size: 20px;
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
+.about-content {
+  flex: 1;
+  padding-right: 40px;
+  max-width: 500px;
+}
+
+.about-content h2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #16255d;
+  margin-bottom: 20px;
+}
+
+.about-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.about-details {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.about-mission p,
+.about-values ul {
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.about-values ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-values li {
+  margin-bottom: 5px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.about-values li::before {
+  content: "•";
+  color: #031749;
+  font-size: 20px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 
 .about-image {
-    width: 550px;
-    height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
+  width: 550px;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .about-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
 .about-image img.active {
-    opacity: 1;
+  opacity: 1;
 }
+
 /* Стилі для вкладок */
 h2 {
-    text-align: center;
-    width: 100%; /* Optional: ensures it takes up the full width */
-    margin: 0 auto; /* Optional: adds margin to the left and right */
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
 }
+
 .tab-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin: 0 auto;
-    width: 80%; /* Adjust as necessary */
-    z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  width: 80%;
+  z-index: 1001;
 }
 
-/* Center the buttons */
 .tab-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #d0d0d0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #d0d0d0;
 }
 
-/* Button Styling */
 .tab-buttons button {
-    background: none;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    color: #333;
-    border-bottom: 3px solid transparent;
-    transition: all 0.3s ease-in-out;
+  background: none;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #333;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease-in-out;
 }
 
-/* Active button style */
 .tab-buttons button.active {
-    font-weight: bold;
-    border-bottom: 3px solid #d0d0d0;
-    color: #951825;
+  font-weight: bold;
+  border-bottom: 3px solid #d0d0d0;
+  color: #951825;
 }
 
-/* Hide non-active tabs */
 .tab-content {
-    display: none;
-    width: 100%;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  display: none;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-/* Active tab content */
 .tab-content.active {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Основні стилі для акордеону */
-/* Основний контейнер акордеону */
 .accordion {
-    width: 80%; /* Відступи для всього акордеону*/
-    margin:0 auto;
+  width: 80%;
+  margin: 0 auto;
 }
 
-/* Заголовки акордеону */
 .accordion dt {
-    font-weight: bold;
-    cursor: pointer;
-    background-color: #f3f3f3;
-    padding: 15px;
-    margin: 5px 0;
-    transition: margin-bottom 1s ease-in-out;
-    text-align: left; /* Вирівнюємо текст по лівому краю */
-    z-index: 1001;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #f3f3f3;
+  padding: 15px;
+  margin: 5px 0;
+  transition: margin-bottom 1s ease-in-out;
+  text-align: left;
+  z-index: 1001;
 }
 
-/* Ховер ефект */
 .accordion dt:hover {
-    background-color: #951825;
+  background-color: #951825;
 }
 
-/* Вкладений акордеон */
 .nested-accordion {
-    padding-left: 0px; /* Вирівнюємо вкладений акордеон відносно батьківського */
+  padding-left: 0px;
 }
 
-/* Заголовки вкладеного акордеону */
 .nested-accordion dt {
-    font-weight: normal;
-    padding-left: 10px;
-    background-color: #dcdcdc;
-    transition: background-color 0.3s ease-out;
-    text-align: left;
+  font-weight: normal;
+  padding-left: 10px;
+  background-color: #dcdcdc;
+  transition: background-color 0.3s ease-out;
+  text-align: left;
 }
 
 .nested-accordion dt:hover {
-    background-color: #951825;
+  background-color: #951825;
 }
 
-/* Контент вкладеного акордеону */
 .nested-accordion dd {
-    width: calc(100% - 40px); /* Зменшуємо ширину, щоб вкладений контент не вилазив за межі батьківського */
-    margin: 0;
-    padding-left: 20px; /* Вирівнюємо вкладений контент */
-    text-align: left;
+  width: calc(100% - 40px);
+  margin: 0;
+  padding-left: 20px;
+  text-align: left;
 }
 
-/* Прихований контент */
-.accordion dd, .nested-accordion dd {
-    display: none;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+.accordion dd,
+.nested-accordion dd {
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
-/* Відкритий контент */
-.accordion dd.active, .nested-accordion dd.active {
-    display: block; /* Змінено display на block для правильного відображення */
-    opacity: 1;
-    transform: translateY(0);
-    background-color: #f0f0f0;
-    width: calc(100% - 40px); /* Робимо контент пропорційним до батьківського акордеону */
-    margin-left: 0px; /* Вирівнюємо по лівому краю батьківського акордеону */
-    padding: 10px;
+.accordion dd.active,
+.nested-accordion dd.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  background-color: #f0f0f0;
+  width: calc(100% - 40px);
+  margin-left: 0px;
+  padding: 10px;
 }
 
-/* Стиль для видимого вмісту вкладок */
 .tab-content.active {
-    display: block;
+  display: block;
 }
 
 .tab-content {
-    display: none;
-}
-/* Для вкладок */
-.tab-link.active {
-    font-weight: bold;
-    background-color: #f0f0f0; /* або інший стиль для активної вкладки */
+  display: none;
 }
 
-/* Для акордеону */
+.tab-link.active {
+  font-weight: bold;
+  background-color: #f0f0f0;
+}
+
 .accordion dd {
-    display: none; /* Спочатку всі dd приховані */
+  display: none;
 }
 
 .accordion dd.active {
-    display: block; /* Показуємо лише активний dd */
+  display: block;
 }
-/* Контейнер вкладок */
+
 .tab-content-container {
-    display: flex;
-    overflow: hidden;
-    width: 100%;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
 }
 
-/* Для кожного вкладеного контенту */
 .tab-content {
-    flex: 0 0 100%;
-    display: none; /* Спочатку всі вкладки приховані */
-    transition: transform 0.5s ease-in-out; /* Плавний перехід */
+  flex: 0 0 100%;
+  display: none;
+  transition: transform 0.5s ease-in-out;
 }
 
-/* Показуємо тільки активний контент вкладки */
 .tab-content.active {
-    display: block;
-    transform: translateX(0); /* Показуємо активну вкладку */
+  display: block;
+  transform: translateX(0);
 }
 
-/* Коли вкладка неактивна - зміщуємо її в ліво */
 .tab-content:not(.active) {
-    transform: translateX(-100%);
+  transform: translateX(-100%);
 }
+
 .section-title {
-    text-align: center;
+  text-align: center;
 }
+
 .section-title {
-    margin-top: 200px; /* Відступ між секціями */
+  margin-top: 200px;
 }
+
 .section {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .section.visible {
-    opacity: 1;
-    transform: trans
-    lateY(0);
-}
-.split-content {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    width: 100%;
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Ліва частина з текстом */
+.split-content {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+}
+
 .content-text {
-    flex: 1;
-    min-width: 0;
-    padding: 15px;
-    text-align: justify;
-    display: flex;
-    flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  padding: 15px;
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
 }
 
 .content-text p {
-    margin-bottom: 15px;
-    line-height: 1.6;
+  margin-bottom: 15px;
+  line-height: 1.6;
 }
 
 .content-text ul {
-    margin-bottom: 20px;
-    padding-left: 20px;
+  margin-bottom: 20px;
+  padding-left: 20px;
 }
 
 .content-text ul li {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
-/* Права частина з галереєю */
 .content-gallery {
-    flex: 1;
-    margin-top: 20px;
-    position: relative;
-    height: 250px;
-    overflow: hidden;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  margin-top: 20px;
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Стилі для слайдера в акордеоні */
+/* ===== ПОКРАЩЕНЕ АВТОМАТИЧНЕ ПЕРЕКЛЮЧЕННЯ ФОТО В АКОРДЕОНІ ===== */
 .accordion-slider {
-    display: flex;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.5s ease-in-out;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .accordion-slide {
-    min-width: 100%;
-    height: 100%;
-    flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.accordion-slide.active {
+  opacity: 1;
+  position: relative;
 }
 
 .accordion-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-/* Стилі для кнопки "Детальніше" */
+.accordion-slide:hover img {
+  transform: scale(1.05);
+}
+
+/* Індикатори слайдів */
+.accordion-slider::after {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  transition: background 0.3s ease;
+}
+
+.accordion-slider.paused::after {
+  background: rgba(255, 255, 255, 0.8);
+}
+
 .details-link {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #9d182f;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    text-align: center;
-    transition: all 0.3s ease;
-    margin-top: 15px;
-    align-self: flex-start;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #9d182f;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+  align-self: flex-start;
 }
 
 .details-link:hover {
-    background-color: #7a1023;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #7a1023;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Покращення ховер-ефекту для заголовків акордеону */
-.accordion dt:hover, 
+.accordion dt:hover,
 .nested-accordion dt:hover {
-    background-color: #9d182f;
-    color: white;
-    transition: all 0.3s ease;
+  background-color: #9d182f;
+  color: white;
+  transition: all 0.3s ease;
 }
 
 /*===================gallery=============*/
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Gotham Pro', sans-serif;    
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .gallery-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: white;
-    padding: 20px;
-    position: relative;
-    width: 100%;
-    max-width: 1440px;
-    margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  padding: 20px;
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
 }
 
 .controls {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-right: 150px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-right: 150px;
 }
 
 .controls button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    background: #333;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s ease;
-  
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #333;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
 }
 
 .controls button:hover {
-    background: #951825;
+  background: #951825;
 }
 
 .content {
-    display: flex;
-    align-items: center;
-    margin-top: 50px;
-    gap: 40px;
-    width: 100%;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  gap: 40px;
+  width: 100%;
+  justify-content: center;
 }
 
 .text-block {
-    font-size: 16px;
-    width: 300px;
-    height: auto;
-    min-height: 500px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: left;
-    background: #fff;
+  font-size: 16px;
+  width: 300px;
+  height: auto;
+  min-height: 500px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  background: #fff;
 }
 
 .slider-container {
-    width: 900px;
-    overflow: hidden;
-    position: relative;
+  width: 900px;
+  overflow: hidden;
+  position: relative;
 }
 
 .slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+  display: flex;
+  transition: transform 0.5s ease-in-out;
 }
 
 .slide {
-    width: 750px;
-    height: 500px;
-    flex-shrink: 0;
-    margin-right: 20px;
-    position: relative;
-    overflow: hidden;
+  width: 750px;
+  height: 500px;
+  flex-shrink: 0;
+  margin-right: 20px;
+  position: relative;
+  overflow: hidden;
 }
 
 .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
 .slide:hover img {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 1s ease;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 1s ease;
 }
 
 .slide:hover .overlay {
-    opacity: 1;
+  opacity: 1;
 }
 
 .overlay p {
-    color: white;
-    text-align: left;
-    font-size: 20px;
-    font-weight: bold;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+  color: white;
+  text-align: left;
+  font-size: 20px;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
 }
 
 .slide:hover .overlay p {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
+
 .section {
-    opacity: 0;
-    transform: translateY(50px); /* Спочатку зсуваємо вниз */
-    transition: opacity 1s ease-out, transform 1s ease-out;
-    padding: 60px;
-    margin: 40px 0;
-    background-color: #f0f0f0;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: transform 1s ease-out, opacity 1s ease-out;
+  padding: 60px;
+  margin: 40px 0;
+  background-color: #f0f0f0;
 }
 
-/* Клас, який додається при видимості секції */
 .section.visible {
-    opacity: 1;
-    transform: translateY(0); /* Повертаємо на місце */
+  transform: translateY(0);
+  opacity: 1;
 }
 
-/* Інші стилі для секцій */
 h2 {
-    font-size: 2rem;
-    color: #333;
+  font-size: 2rem;
+  color: #333;
 }
+
 p {
-    font-size: 1rem;
-    color: #666;
+  font-size: 1rem;
+  color: #666;
 }
-/* Початковий стан секцій */
+
 section {
   transform: translateY(100px);
   opacity: 0;
   transition: transform 1.5s ease-out, opacity 1s ease-out;
 }
 
-/* Коли секція стає видимою */
 section.visible {
   transform: translateY(0);
   opacity: 1;
 }
-/* Стилі для кнопки "Детальніше" в галереї */
+
+/* ===== КНОПКИ ДЕТАЛЬНІШЕ В ГАЛЕРЕЇ ===== */
 .gallery-details-link {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #9d182f;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    text-align: center;
-    transition: all 0.3s ease;
-    margin-top: 15px;
-    border-radius: 4px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #9d182f;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+  border-radius: 0;
 }
 
 .gallery-details-link:hover {
-    background-color: #7a1023;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #7a1023;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(157, 24, 47, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Оновлення стилів для текстового блоку в галереї */
+.gallery-details-link:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(157, 24, 47, 0.2);
+}
 
-
-/* Розміщення кнопки внизу текстового блоку */
 .text-block p {
-    margin-bottom: 15px;
-    flex-grow: 1;
+  margin-bottom: 15px;
+  flex-grow: 1;
 }
 
 @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-250px * 7)); }
-}
-
-
-
-footer {
-        background-color: #002147;
-        color: white;
-        padding: 20px 0;
-        text-align: center;
-    }
-
-    .footer-container {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-wrap: wrap;
-        max-width: 1200px;
-        margin: auto;
-    }
-
-    .footer-contacts {
-        max-width: 400px;
-        text-align: left;
-    }
-
-    .social-icons a img {
-        width: 30px;
-        margin: 10px;
-    }
-
-    .footer-map {
-        max-width: 400px;
-        width: 100%;
-    }
-
-    @media (max-width: 768px) {
-        .footer-container {
-            flex-direction: column;
-            text-align: center;
-        }
-        .footer-contacts, .footer-map {
-            max-width: 100%;
-        }
-    }
-    /*animation
-    Thought for 2 seconds### Оптимізований JavaScript код з усіма покращеннями
-
-```javascript
-$(document).ready(function () {
-    console.log("jQuery працює!");
-
-    // Ініціалізація Facebook Pixel відстеження
-    initializeTracking();
-    
-    // Ініціалізація галереї з циклічною навігацією
-    initializeGallery();
-    
-    // Ініціалізація акордеону з анімаціями
-    initializeAccordion();
-    
-    // Ініціалізація табів з анімаціями
-    initializeTabs();
-    
-    // Інші функції
-    initializeScrollEffects();
-    initializeHeaderBehavior();
-    initializeVerticalNav();
-
-    // ФУНКЦІЯ 1: ВІДСТЕЖЕННЯ FACEBOOK PIXEL
-    function initializeTracking() {
-        // Track navigation clicks in header
-        $('header nav a').on('click', function() {
-            const section = $(this).text().trim();
-            fbq('track', 'Navigation', { section: section });
-            console.log("Navigation click tracked:", section);
-        });
-
-        // Track phone number clicks
-        $('.phone-numbers a').on('click', function() {
-            const phoneNumber = $(this).text().trim();
-            fbq('track', 'Contact', { method: 'phone', content: phoneNumber });
-            console.log("Phone click tracked:", phoneNumber);
-        });
-
-        // Track vertical navigation clicks
-        $('.vertical-nav a').on('click', function() {
-            const section = $(this).find('.nav-text').text().trim();
-            fbq('track', 'VerticalNavigation', { section: section });
-            console.log("Vertical navigation click tracked:", section);
-        });
-
-        // Track social sidebar clicks
-        $('.social-sidebar a').on('click', function() {
-            const platform = $(this).attr('title');
-            fbq('track', 'SocialClick', { platform: platform });
-            console.log("Social click tracked:", platform);
-        });
-
-        // Track "Details" button clicks
-        $(document).on('click', '.details-link', function() {
-            var section = $(this).closest('dd').prev('dt').text().trim();
-            fbq('track', 'DetailsClick', { section: section });
-            console.log("Details click tracked:", section);
-        });
-
-        // Track footer links
-        $('footer a').click(function() {
-            var linkType = '';
-            var linkValue = $(this).text().trim();
-            
-            if ($(this).closest('.social-icons').length) {
-                linkType = 'social';
-                linkValue = $(this).find('img').attr('alt');
-            } else if ($(this).attr('href').startsWith('tel:')) {
-                linkType = 'phone';
-            } else if ($(this).attr('href').startsWith('mailto:')) {
-                linkType = 'email';
-            } else {
-                linkType = 'link';
-            }
-            
-            fbq('track', 'FooterClick', { type: linkType, value: linkValue });
-            console.log("Footer click tracked:", linkType, linkValue);
-        });
-    }
-
-    // ФУНКЦІЯ 2: ГАЛЕРЕЯ З ЦИКЛІЧНОЮ НАВІГАЦІЄЮ
-    function initializeGallery() {
-        // Ініціалізація для всіх галерей на сторінці
-        $('.gallery-container').each(function(galleryIndex) {
-            const $gallery = $(this);
-            const $slider = $gallery.find('.slider');
-            const $slides = $gallery.find('.slide');
-            const $prevButton = $gallery.find('.controls button:first-child');
-            const $nextButton = $gallery.find('.controls button:last-child');
-            const slideCount = $slides.length;
-            
-            // Встановлюємо початковий індекс
-            $gallery.data('currentIndex', 0);
-            
-            // Функція для оновлення слайдера
-            function updateSlider(newIndex) {
-                const currentIndex = $gallery.data('currentIndex');
-                const slideWidth = $slides.first().outerWidth();
-                
-                // Анімуємо перехід
-                $slider.css({
-                    'transition': 'transform 0.5s ease',
-                    'transform': `translateX(${-newIndex * slideWidth}px)`
-                });
-                
-                // Оновлюємо індекс
-                $gallery.data('currentIndex', newIndex);
-                
-                // Відстежуємо подію
-                const galleryTitle = $gallery.find('.text-block h3').text().trim();
-                const direction = newIndex > currentIndex ? 'next' : 'prev';
-                
-                fbq('track', 'GalleryNavigation', { 
-                    direction: direction, 
-                    gallery: galleryTitle,
-                    slideIndex: newIndex
-                });
-                console.log(`Gallery ${galleryIndex} navigation: ${direction} to slide ${newIndex}`);
-            }
-            
-            // Обробник для кнопки "Наступний"
-            $nextButton.on('click', function() {
-                const currentIndex = $gallery.data('currentIndex');
-                // Циклічна навігація: якщо досягли кінця, повертаємось на початок
-                const newIndex = (currentIndex + 1) % slideCount;
-                updateSlider(newIndex);
-            });
-            
-            // Обробник для кнопки "Попередній"
-            $prevButton.on('click', function() {
-                const currentIndex = $gallery.data('currentIndex');
-                // Циклічна навігація: якщо на початку, переходимо в кінець
-                const newIndex = (currentIndex - 1 + slideCount) % slideCount;
-                updateSlider(newIndex);
-            });
-            
-            // Автоматична зміна слайдів кожні 5 секунд
-            let autoplayInterval = setInterval(function() {
-                if ($gallery.is(':visible') && !$gallery.hasClass('paused')) {
-                    const currentIndex = $gallery.data('currentIndex');
-                    const newIndex = (currentIndex + 1) % slideCount;
-                    updateSlider(newIndex);
-                }
-            }, 5000);
-            
-            // Зупиняємо автоматичну зміну при наведенні миші
-            $gallery.hover(
-                function() { $(this).addClass('paused'); },
-                function() { $(this).removeClass('paused'); }
-            );
-            
-            // Підтримка свайпів для мобільних пристроїв
-            let touchStartX = 0;
-            let touchEndX = 0;
-            
-            $slider.on('touchstart', function(e) {
-                touchStartX = e.originalEvent.touches[0].clientX;
-            });
-            
-            $slider.on('touchend', function(e) {
-                touchEndX = e.originalEvent.changedTouches[0].clientX;
-                handleSwipe();
-            });
-            
-            function handleSwipe() {
-                const minSwipeDistance = 50;
-                const swipeDistance = touchEndX - touchStartX;
-                
-                if (Math.abs(swipeDistance) > minSwipeDistance) {
-                    const currentIndex = $gallery.data('currentIndex');
-                    let newIndex;
-                    
-                    if (swipeDistance < 0) {
-                        // Свайп вліво - наступний слайд
-                        newIndex = (currentIndex + 1) % slideCount;
-                    } else {
-                        // Свайп вправо - попередній слайд
-                        newIndex = (currentIndex - 1 + slideCount) % slideCount;
-                    }
-                    
-                    updateSlider(newIndex);
-                }
-            }
-        });
-    }
-
-    // ФУНКЦІЯ 3: АКОРДЕОН З АНІМАЦІЯМИ
-    function initializeAccordion() {
-        // Попередньо завантажуємо контент акордеону для уникнення лагів
-        preloadAccordionContent();
-        
-        // Головний акордеон
-        $('.accordion dt').off('click').on('click', function() {
-            const $dt = $(this);
-            const $dd = $dt.next('dd');
-            const sectionName = $dt.text().trim();
-            
-            if (!$dd.length) return;
-            
-            // Анімація для заголовка акордеону
-            $dt.addClass('clicked');
-            setTimeout(() => $dt.removeClass('clicked'), 300);
-            
-            // Відстеження події з затримкою
-            setTimeout(function() {
-                if ($dd.hasClass('active')) {
-                    fbq('track', 'AccordionOpen', { section: sectionName, level: 'main' });
-                    console.log("Main accordion open tracked:", sectionName);
-                }
-            }, 10);
-            
-            // Оптимізована анімація з плавною появою/зникненням
-            if (!$dd.hasClass('active')) {
-                // Закриваємо всі активні dd з анімацією
-                $('.accordion dd.active').each(function() {
-                    const $activeDD = $(this);
-                    $activeDD.css({
-                        'max-height': $activeDD.outerHeight(),
-                        'overflow': 'hidden'
-                    });
-                    
-                    // Анімуємо закриття
-                    setTimeout(() => {
-                        $activeDD.css({
-                            'transition': 'max-height 0.3s ease-out, opacity 0.2s ease-out',
-                            'max-height': '0',
-                            'opacity': '0'
-                        });
-                        
-                        // Після завершення анімації
-                        setTimeout(() => {
-                            $activeDD.removeClass('active').hide().css({
-                                'max-height': '',
-                                'opacity': '',
-                                'transition': '',
-                                'overflow': ''
-                            });
-                        }, 300);
-                    }, 10);
-                });
-                
-                // Відкриваємо поточний з затримкою та анімацією
-                setTimeout(function() {
-                    $dd.css({
-                        'display': 'block',
-                        'max-height': '0',
-                        'opacity': '0',
-                        'overflow': 'hidden'
-                    });
-                    
-                    // Запускаємо анімацію появи
-                    setTimeout(() => {
-                        $dd.addClass('active').css({
-                            'transition': 'max-height 0.5s ease-in, opacity 0.3s ease-in',
-                            'max-height': '2000px', // Достатньо велике значення
-                            'opacity': '1'
-                        });
-                        
-                        // Після завершення анімації
-                        setTimeout(() => {
-                            $dd.css({
-                                'max-height': '',
-                                'transition': '',
-                                'overflow': ''
-                            });
-                        }, 500);
-                    }, 10);
-                }, 310);
-            } else {
-                // Анімуємо закриття
-                $dd.css({
-                    'max-height': $dd.outerHeight(),
-                    'overflow': 'hidden'
-                });
-                
-                setTimeout(() => {
-                    $dd.css({
-                        'transition': 'max-height 0.3s ease-out, opacity 0.2s ease-out',
-                        'max-height': '0',
-                        'opacity': '0'
-                    });
-                    
-                    // Після завершення анімації
-                    setTimeout(() => {
-                        $dd.removeClass('active').hide().css({
-                            'max-height': '',
-                            'opacity': '',
-                            'transition': '',
-                            'overflow': ''
-                        });
-                    }, 300);
-                }, 10);
-            }
-        });
-        
-        // Вкладений акордеон
-        $('.nested-accordion dt').off('click').on('click', function(event) {
-            event.stopPropagation();
-            
-            const $dt = $(this);
-            const $dd = $dt.next('dd');
-            const childSection = $dt.text().trim();
-            const parentSection = $dt.closest('.accordion').find('> dt').text().trim();
-            
-            if (!$dd.length) return;
-            
-            // Анімація для заголовка акордеону
-            $dt.addClass('clicked');
-            setTimeout(() => $dt.removeClass('clicked'), 300);
-            
-            // Відстеження події з затримкою
-            setTimeout(function() {
-                if ($dd.hasClass('active')) {
-                    fbq('track', 'AccordionOpen', { 
-                        section: childSection, 
-                        parentSection: parentSection,
-                        level: 'nested' 
-                    });
-                    console.log("Nested accordion open tracked:", parentSection, ">", childSection);
-                }
-            }, 10);
-            
-            // Оптимізована анімація з плавною появою/зникненням
-            if (!$dd.hasClass('active')) {
-                // Закриваємо всі активні вкладені dd з анімацією
-                $dt.closest('.nested-accordion').find('dd.active').each(function() {
-                    const $activeDD = $(this);
-                    $activeDD.css({
-                        'max-height': $activeDD.outerHeight(),
-                        'overflow': 'hidden'
-                    });
-                    
-                    // Анімуємо закриття
-                    setTimeout(() => {
-                        $activeDD.css({
-                            'transition': 'max-height 0.3s ease-out, opacity 0.2s ease-out',
-                            'max-height': '0',
-                            'opacity': '0'
-                        });
-                        
-                        // Після завершення анімації
-                        setTimeout(() => {
-                            $activeDD.removeClass('active').hide().css({
-                                'max-height': '',
-                                'opacity': '',
-                                'transition': '',
-                                'overflow': ''
-                            });
-                        }, 300);
-                    }, 10);
-                });
-                
-                // Відкриваємо поточний з затримкою та анімацією
-                setTimeout(function() {
-                    $dd.css({
-                        'display': 'block',
-                        'max-height': '0',
-                        'opacity': '0',
-                        'overflow': 'hidden'
-                    });
-                    
-                    // Запускаємо анімацію появи
-                    setTimeout(() => {
-                        $dd.addClass('active').css({
-                            'transition': 'max-height 0.5s ease-in, opacity 0.3s ease-in',
-                            'max-height': '1000px', // Достатньо велике значення
-                            'opacity': '1'
-                        });
-                        
-                        // Після завершення анімації
-                        setTimeout(() => {
-                            $dd.css({
-                                'max-height': '',
-                                'transition': '',
-                                'overflow': ''
-                            });
-                        }, 500);
-                    }, 10);
-                }, 310);
-            } else {
-                // Анімуємо закриття
-                $dd.css({
-                    'max-height': $dd.outerHeight(),
-                    'overflow': 'hidden'
-                });
-                
-                setTimeout(() => {
-                    $dd.css({
-                        'transition': 'max-height 0.3s ease-out, opacity 0.2s ease-out',
-                        'max-height': '0',
-                        'opacity': '0'
-                    });
-                    
-                    // Після завершення анімації
-                    setTimeout(() => {
-                        $dd.removeClass('active').hide().css({
-                            'max-height': '',
-                            'opacity': '',
-                            'transition': '',
-                            'overflow': ''
-                        });
-                    }, 300);
-                }, 10);
-            }
-        });
-        
-        // Попереднє завантаження контенту акордеону для уникнення лагів
-        function preloadAccordionContent() {
-            // Приховуємо всі dd елементи, але завантажуємо їх контент
-            $('.accordion dd, .nested-accordion dd').each(function() {
-                const $dd = $(this);
-                
-                // Якщо є зображення, попередньо завантажуємо їх
-                $dd.find('img').each(function() {
-                    const img = new Image();
-                    img.src = $(this).attr('src');
-                });
-                
-                // Якщо є iframe (карти, відео), також завантажуємо
-                $dd.find('iframe').each(function() {
-                    $(this).attr('data-src', $(this).attr('src'));
-                    $(this).attr('src', '');
-                });
-            });
-            
-            // Додаємо обробник для завантаження iframe при відкритті акордеону
-            $('.accordion dt, .nested-accordion dt').on('click', function() {
-                const $dd = $(this).next('dd');
-                
-                $dd.find('iframe[data-src]').each(function() {
-                    if (!$(this).attr('src')) {
-                        $(this).attr('src', $(this).attr('data-src'));
-                    }
-                });
-            });
-        }
-    }
-
-    // ФУНКЦІЯ 4: ТАБИ З АНІМАЦІЯМИ
-    function initializeTabs() {
-        $('.tab-link').off('click').on('click', function() {
-            const $tab = $(this);
-            const tabId = $tab.data('tab');
-            const tabLabel = $tab.text().trim();
-            
-            if (!tabId) {
-                console.warn("Помилка: tabId не знайдено!");
-                return;
-            }
-            
-            // Відстеження зміни вкладки
-            fbq('track', 'TabChange', { tab: tabId, label: tabLabel });
-            console.log("Tab change tracked:", tabId, tabLabel);
-            
-            // Анімація для активної вкладки
-            $tab.addClass('tab-clicked');
-            setTimeout(() => $tab.removeClass('tab-clicked'), 300);
-            
-            // Оновлюємо активний стан вкладок
-            $('.tab-link').removeClass('active');
-            $tab.addClass('active');
-            
-            // Анімація зміни контенту
-            const $currentContent = $('.tab-content.active');
-            const $newContent = $('#' + tabId);
-            
-            // Анімуємо вихід поточного контенту
-            $currentContent.css({
-                'transition': 'transform 0.3s ease-out, opacity 0.3s ease-out',
-                'transform': 'translateX(-30px)',
-                'opacity': '0'
-            });
-            
-            // Після завершення анімації виходу
-            setTimeout(() => {
-                $currentContent.removeClass('active').css({
-                    'transform': 'translateX(100%)',
-                    'transition': '',
-                    'display': 'none'
-                });
-                
-                // Підготовка нового контенту
-                $newContent.css({
-                    'display': 'block',
-                    'transform': 'translateX(30px)',
-                    'opacity': '0'
-                });
-                
-                // Анімуємо вхід нового контенту
-                setTimeout(() => {
-                    $newContent.addClass('active').css({
-                        'transition': 'transform 0.3s ease-in, opacity 0.3s ease-in',
-                        'transform': 'translateX(0)',
-                        'opacity': '1'
-                    });
-                    
-                    // Після завершення анімації входу
-                    setTimeout(() => {
-                        $newContent.css({
-                            'transition': ''
-                        });
-                    }, 300);
-                }, 20);
-            }, 300);
-            
-            // Прокрутка до активної вкладки на мобільних
-            if (window.innerWidth <= 768) {
-                const tabContainer = document.querySelector('.tab-buttons');
-                if (tabContainer) {
-                    tabContainer.scrollLeft = $tab[0].offsetLeft - tabContainer.offsetWidth / 2 + $tab[0].offsetWidth / 2;
-                }
-            }
-        });
-    }
-
-    // ФУНКЦІЯ 5: ЕФЕКТИ СКРОЛУ
-    function initializeScrollEffects() {
-        // Анімація секцій при скролі
-        function revealSections() {
-            $("section").each(function() {
-                let sectionTop = $(this).offset().top;
-                let windowBottom = $(window).scrollTop() + $(window).height();
-                if (windowBottom > sectionTop + 100) {
-                    $(this).addClass("visible");
-                }
-            });
-        }
-        
-        // Зміна зображень в секції About
-        const aboutImages = document.querySelectorAll(".about-image img");
-        let aboutImageIndex = 0;
-
-        function changeAboutImage() {
-            if (aboutImages.length > 1) {
-                aboutImages[aboutImageIndex].classList.remove("active");
-                aboutImageIndex = (aboutImageIndex + 1) % aboutImages.length;
-                aboutImages[aboutImageIndex].classList.add("active");
-            }
-        }
-
-        if (aboutImages.length > 0) {
-            setInterval(changeAboutImage, 4000);
-        }
-
-        // Викликаємо функцію при завантаженні сторінки та скролі
-        revealSections();
-        $(window).on("scroll", revealSections);
-    }
-
-    // ФУНКЦІЯ 6: ПОВЕДІНКА ХЕДЕРА
-    function initializeHeaderBehavior() {
-        // Анімація хедера при скролі
-        let header = document.querySelector("header");
-        if (header) {
-            window.addEventListener("scroll", function() {
-                if (window.scrollY > 50) {
-                    header.classList.add("shrink");
-                } else {
-                    header.classList.remove("shrink");
-                }
-            });
-        }
-        
-        // Приховування хедера при скролі вниз
-        let lastScrollY = window.scrollY;
-        if (header) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > lastScrollY) {
-                    header.classList.add('hidden');
-                } else {
-                    header.classList.remove('hidden');
-                }
-                lastScrollY = window.scrollY;
-            });
-
-            header.addEventListener('mouseenter', () => {
-                header.classList.remove('hidden');
-            });
-
-            header.addEventListener('mouseleave', () => {
-                if (window.scrollY > 0) {
-                    header.classList.add('hidden');
-                }
-            });
-        }
-    }
-
-    // ФУНКЦІЯ 7: ВЕРТИКАЛЬНА НАВІГАЦІЯ
-    function initializeVerticalNav() {
-        const verticalNav = document.querySelector('.vertical-nav');
-        const navLinks = document.querySelectorAll('.vertical-nav a');
-        const sections = document.querySelectorAll('section[id]');
-        
-        // Функція для плавного скролу при кліку на посилання
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                
-                if (targetSection) {
-                    window.scrollTo({
-                        top: targetSection.offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Функція для обробки скролу
-        function handleScroll() {
-            if (!verticalNav) return;
-            
-            // Показувати навігацію тільки коли прокручено нижче першого екрану
-            if (window.scrollY > window.innerHeight * 0.7) {
-                verticalNav.classList.add('visible');
-            } else {
-                verticalNav.classList.remove('visible');
-            }
-            
-            // Визначення активної секції
-            let currentSection = null;
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                const isMobile = window.innerWidth <= 768;
-                const offset = isMobile ? 100 : 200;
-                
-                if (window.scrollY >= sectionTop - offset && 
-                    window.scrollY < sectionTop + sectionHeight - offset) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
-            
-            // Оновлення активного стану посилань
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                
-                if (currentSection && link.getAttribute('href') === `#${currentSection}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-        
-        // Додавання обробника події скролу
-        window.addEventListener('scroll', handleScroll);
-        
-        // Перевірка початкового стану
-        handleScroll();
-    }
-});
-```
-
-## Додайте ці стилі до вашого CSS файлу для анімацій
-
-```css
-/* Анімації для акордеону */
-.accordion dt, .nested-accordion dt {
-    position: relative;
-    overflow: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.accordion dt.clicked, .nested-accordion dt.clicked {
-    animation: pulse 0.3s ease;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.02); }
-    100% { transform: scale(1); }
-}
-
-.accordion dt:after, .nested-accordion dt:after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: -100%;
-    background: rgba(255, 255, 255, 0.2);
-    transition: left 0.3s ease;
-}
-
-.accordion dt:hover:after, .nested-accordion dt:hover:after {
-    left: 100%;
-}
-
-/* Анімації для табів */
-.tab-link {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.tab-link.tab-clicked {
-    animation: tabPulse 0.3s ease;
-}
-
-@keyframes tabPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-.tab-link:after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #9d182f;
-    transform: scaleX(0);
-    transform-origin: bottom right;
-    transition: transform 0.3s ease;
-}
-
-.tab-link.active:after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
-
-/* Анімації для галереї */
-.slider {
-    transition: transform 0.5s ease;
-}
-
-.slide {
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.slide:hover {
-    transform: scale(1.02);
-}
-
-/* Анімації для вертикальної навігації */
-.vertical-nav {
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.vertical-nav.visible {
-    opacity: 1;
+  0% {
     transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 7));
+  }
 }
 
-.vertical-nav:not(.visible) {
-    opacity: 0;
-    transform: translateX(-20px);
-    pointer-events: none;
+.section {
+  margin: 80px 0;
+  padding: 60px 0;
 }
 
-.vertical-nav a span {
-    transition: transform 0.3s ease, background-color 0.3s ease, width 0.3s ease, height 0.3s ease;
+.about-section {
+  margin-top: 300px;
+  margin-bottom: 120px;
 }
-    /* Додайте цей код до вашого файлу стилів */
-.social-sidebar {
-    position: fixed;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
+
+.section-title {
+  margin-top: 200px;
+  margin-bottom: 60px;
+}
+
+#specialties {
+  padding: 80px 0;
+  margin: 120px 0;
+}
+
+.gallery-container {
+  margin: 120px auto;
+  padding: 60px 20px;
+}
+
+.gallery-more-button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #9d182f 0%, #7a1023 100%);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 0;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  font-size: 16px;
+  text-align: center;
+  min-width: 150px;
+}
+
+.gallery-more-button:hover {
+  background: linear-gradient(135deg, #7a1023 0%, #5a0c1a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(157, 24, 47, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.gallery-more-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(157, 24, 47, 0.2);
+}
+
+/* ===== ПОКРАЩЕНИЙ ЧИТАБЕЛЬНИЙ ФУТЕР ===== */
+footer {
+  background: linear-gradient(135deg, #9d182f 0%, #7a1023 100%);
+  color: white;
+  padding: 60px 0 30px 0;
+  margin-top: 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ffffff 0%, #f0f0f0 50%, #ffffff 100%);
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.footer-contacts {
+  max-width: 100%;
+}
+
+.footer-contacts h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #ffffff;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-contacts h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: #ffffff;
+}
+
+/* Покращені контактні елементи */
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.contact-icon {
+  font-size: 18px;
+  margin-right: 12px;
+  min-width: 25px;
+  text-align: center;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-details strong {
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 16px;
+  display: block;
+}
+
+.contact-details a {
+  color: #f0f0f0;
+  text-decoration: none;
+  font-size: 15px;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.contact-details span {
+  color: #f0f0f0;
+  font-size: 15px;
+  line-height: 1.4;
+  display: block;
+}
+
+.footer-social h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ffffff;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.footer-social h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #ffffff;
+}
+
+.social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.social-icons a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+  color: white;
+  min-width: 100px;
+}
+
+.social-icons a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.social-icons a img {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(1);
+}
+
+.social-icons a span {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.footer-map {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.footer-map h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #ffffff;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.footer-map h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #ffffff;
+}
+
+/* ===== ФУТЕР З КАРТОЮ ===== */
+.footer-map iframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .footer-map iframe {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-map iframe {
+    height: 200px;
+  }
+}
+
+.footer-bottom {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: #e0e0e0;
+  font-size: 14px;
+}
+
+/* Адаптивність футера */
+@media (max-width: 768px) {
+  footer {
+    padding: 40px 0 25px 0;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .footer-contacts h3,
+  .footer-social h3,
+  .footer-map h3 {
+    font-size: 18px;
+  }
+
+  .footer-contacts h3::after,
+  .footer-social h3::after,
+  .footer-map h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .contact-item {
+    justify-content: center;
+    text-align: center;
     flex-direction: column;
-    gap: 15px;
-    z-index: 1000;
-        padding: 10px;
-    border-radius: 30px;
+  }
+
+  .contact-icon {
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  .footer-map iframe {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-container {
+    padding: 0 15px;
+  }
+
+  .footer-contacts h3,
+  .footer-social h3,
+  .footer-map h3 {
+    font-size: 16px;
+  }
+
+  .contact-details strong {
+    font-size: 14px;
+  }
+
+  .contact-details a,
+  .contact-details span {
+    font-size: 13px;
+  }
+
+  .social-icons a {
+    min-width: 80px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .footer-map iframe {
+    height: 200px;
+  }
+}
+
+.social-sidebar {
+  position: fixed;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1000;
+  padding: 10px;
+  border-radius: 0;
 }
 
 .social-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #9d182f; /* Колір сайту */
-    color: white;
-    transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #9d182f;
+  color: white;
+  transition: all 0.3s ease;
 }
 
 .social-icon:hover {
-    background-color: #7a1023; /* Темніший відтінок при наведенні */
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #7a1023;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Адаптивність для мобільних пристроїв */
 @media (max-width: 768px) {
-    .social-sidebar {
-        right: 10px;
-        padding: 8px;
-    }
-    
-    .social-icon {
-        width: 35px;
-        height: 35px;
-    }
+  .social-sidebar {
+    right: 10px;
+    padding: 8px;
+  }
+
+  .social-icon {
+    width: 35px;
+    height: 35px;
+  }
 }
 
 @media (max-width: 480px) {
-    .social-sidebar {
-        bottom: 20px;
-        top: auto;
-        right: 50%;
-        transform: translateX(50%);
-        flex-direction: row;
-        border-radius: 30px;
-    }
-}
-    /* ===== АДАПТИВНІ СТИЛІ ДЛЯ ВСЬОГО САЙТУ ===== */
-
-/* Великі екрани (десктопи) */
-@media (max-width: 1400px) {
-    .slider-container {
-        width: 700px;
-    }
-    
-    .slide {
-        width: 650px;
-    }
-    
-    .controls {
-        margin-right: 100px;
-    }
-    
-    .about-image {
-        width: 450px;
-        height: 500px;
-    }
+  .social-sidebar {
+    bottom: 20px;
+    top: auto;
+    right: 50%;
+    transform: translateX(50%);
+    flex-direction: row;
+    border-radius: 0;
+  }
 }
 
-/* Середні екрани (ноутбуки) */
-@media (max-width: 1200px) {
-    /* Хедер */
-    header {
-        font-size: 18px;
-        padding: 8px 15px;
-    }
-    
-    .ukd-logo img {
-        height: 60px;
-    }
-    
-    .phone-numbers a {
-        font-size: 16px;
-        padding: 4px 12px;
-    }
-    
-    /* Вертикальна навігація */
-    .vertical-nav {
-        left: 15px;
-    }
-    
-    .nav-dot {
-        width: 10px;
-        height: 10px;
-        margin-right: 10px;
-    }
-    
-    .vertical-nav a.active .nav-dot {
-        width: 14px;
-        height: 14px;
-    }
-    
-    .nav-text {
-        font-size: 13px;
-    }
-    
-    /* Головна секція */
-    .title {
-        font-size: 36px;
-    }
-    
-    .subtitle {
-        font-size: 22px;
-    }
-    
-    .logo {
-        width: 160px;
-        height: 160px;
-    }
-    
-    /* Секція про нас */
-    .about-section {
-        padding: 30px;
-        flex-direction: row;
-    }
-    
-    .about-content {
-        max-width: 450px;
-    }
-    
-    .about-image {
-        width: 400px;
-        height: 450px;
-    }
-    
-    /* Галерея */
-    .slider-container {
-        width: 600px;
-    }
-    
-    .slide {
-        width: 550px;
-        height: 450px;
-    }
-    
-    .text-block {
-        width: 250px;
-        height: 450px;
-    }
-    
-    .controls {
-        margin-right: 80px;
-    }
-    
-    /* Акордеон */
-    .accordion {
-        margin-left: 60px;
-        margin-right: 60px;
-    }
+/* ===== ЗАГАЛЬНА АДАПТИВНІСТЬ ===== */
+@media (max-width: 768px) {
+  .container {
+    height: 70vh;
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 24px;
+    white-space: normal;
+    width: 90%;
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    white-space: normal;
+    width: 90%;
+    text-align: center;
+  }
+
+  .logo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .about-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 15px;
+    margin-top: 120px;
+  }
+
+  .about-content {
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .about-content h2 {
+    font-size: 24px;
+  }
+
+  .about-image {
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+  }
+
+  .accordion {
+    width: 95%;
+  }
+
+  .accordion dt {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .nested-accordion dt {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .split-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .content-gallery {
+    height: 200px;
+    margin-top: 10px;
+  }
+
+  .tab-buttons {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tab-buttons button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
 }
 
-/* Планшети */
+/* ===== МІНІМАЛЬНІ ПОКРАЩЕННЯ АДАПТИВНОСТІ ===== */
+
+/* Покращення для планшетів */
 @media (max-width: 992px) {
-    /* Хедер */
-    header {
-        font-size: 16px;
-        padding: 8px 10px;
-    }
-    
-    .ukd-logo img {
-        height: 50px;
-    }
-    
-    .phone-numbers {
-        gap: 10px;
-        margin-left: 10px;
-    }
-    
-    .phone-numbers a {
-        font-size: 14px;
-        padding: 3px 10px;
-    }
-    
-    /* Вертикальна навігація */
-    .vertical-nav {
-        left: 10px;
-    }
-    
-    .vertical-nav ul {
-        gap: 20px;
-    }
-    
-    /* Головна секція */
-    .title {
-        font-size: 32px;
-    }
-    
-    .subtitle {
-        font-size: 20px;
-    }
-    
-    .logo {
-        width: 140px;
-        height: 140px;
-    }
-    
-    /* Секція про нас */
-    .about-section {
-        padding: 25px;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .about-content {
-        max-width: 100%;
-        padding-right: 0;
-        margin-bottom: 30px;
-    }
-    
-    .about-image {
-        width: 100%;
-        max-width: 500px;
-        height: 400px;
-    }
-    
-    /* Вкладки */
-    .tab-buttons {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    
-    .tab-buttons button {
-        font-size: 14px;
-        padding: 8px 12px;
-    }
-    
-    /* Акордеон */
-    .accordion {
-        margin-left: 40px;
-        margin-right: 40px;
-    }
-    
-    .accordion dt {
-        padding: 12px;
-    }
-    
-    /* Галерея */
-    .content {
-        flex-direction: column;
-        gap: 30px;
-    }
-    
-    .text-block {
-        width: 90%;
-        height: auto;
-        min-height: 200px;
-    }
-    
-    .slider-container {
-        width: 90%;
-    }
-    
-    .slide {
-        width: 100%;
-        height: 400px;
-    }
-    
-    .controls {
-        margin-right: 40px;
-    }
+  .about-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+  }
+
+  .about-content {
+    padding-right: 0;
+    margin-bottom: 30px;
+  }
+
+  .about-image {
+    width: 100%;
+    max-width: 500px;
+    height: 400px;
+  }
+
+  .content {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .text-block {
+    width: 90%;
+    max-width: 600px;
+  }
+
+  .slider-container {
+    width: 90%;
+    max-width: 700px;
+  }
+
+  .slide {
+    width: 100%;
+    height: 400px;
+  }
+
+  .controls {
+    margin-right: 40px;
+  }
+
+  .tab-buttons {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .split-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .content-gallery {
+    height: 200px;
+    margin-top: 15px;
+  }
 }
 
-/* Малі планшети та великі смартфони */
-@media (max-width: 768px) {
-    /* Хедер */
-    header {
-        font-size: 14px;
-        padding: 6px 8px;
-    }
-    
-    .ukd-logo img {
-        height: 40px;
-    }
-    
-    .phone-numbers {
-        flex-direction: column;
-        gap: 5px;
-    }
-    
-    .phone-numbers a {
-        font-size: 12px;
-        padding: 2px 8px;
-    }
-    
-    /* Вертикальна навігація */
-    .vertical-nav {
-        left: 10px;
-    }
-    
-    .vertical-nav ul {
-        gap: 16px;
-    }
-    
-    .nav-dot {
-        width: 8px;
-        height: 8px;
-        margin-right: 8px;
-    }
-    
-    .vertical-nav a.active .nav-dot {
-        width: 12px;
-        height: 12px;
-    }
-    
-    .nav-text {
-        font-size: 12px;
-    }
-    
-    /* Головна секція */
-    .title {
-        font-size: 28px;
-        white-space: normal;
-        text-align: center;
-        width: 90%;
-    }
-    
-    .subtitle {
-        font-size: 18px;
-        white-space: normal;
-        text-align: center;
-        width: 90%;
-    }
-    
-    .logo {
-        width: 120px;
-        height: 120px;
-    }
-    
-    /* Секція про нас */
-    .about-section {
-        padding: 20px;
-    }
-    
-    .about-content h2 {
-        font-size: 26px;
-    }
-    
-    .about-content p {
-        font-size: 14px;
-    }
-    
-    .about-image {
-        height: 350px;
-    }
-    
-    /* Вкладки */
-    .tab-buttons {
-        overflow-x: auto;
-        justify-content: flex-start;
-        padding-bottom: 10px;
-        white-space: nowrap;
-        display: flex;
-        flex-wrap: nowrap;
-    }
-    
-    .tab-buttons button {
-        font-size: 13px;
-        padding: 6px 10px;
-        flex-shrink: 0;
-    }
-    
-    /* Акордеон */
-    .accordion {
-        margin-left: 20px;
-        margin-right: 20px;
-    }
-    
-    .accordion dt {
-        padding: 10px;
-        font-size: 15px;
-    }
-    
-    .nested-accordion dt {
-        font-size: 14px;
-    }
-    
-    .nested-accordion dd {
-        font-size: 13px;
-    }
-    
-    /* Галерея */
-    .gallery-container {
-        padding: 15px;
-    }
-    
-    .slide {
-        height: 350px;
-    }
-    
-    .controls {
-        margin-right: 20px;
-    }
-    
-    .controls button {
-        width: 35px;
-        height: 35px;
-    }
-    
-    /* Футер */
-    .footer-container {
-        padding: 0 20px;
-    }
-}
-
-/* Смартфони */
+/* Покращення для мобільних */
 @media (max-width: 576px) {
-    /* Хедер */
-    header {
-        padding: 5px;
-    }
-    
-    .ukd-logo img {
-        height: 35px;
-    }
-    
-    nav ul li {
-        margin: 3px;
-    }
-    
-    nav a {
-        font-size: 12px;
-    }
-    
-    /* Вертикальна навігація */
-    .vertical-nav {
-        left: 5px;
-    }
-    
-    .vertical-nav ul {
-        gap: 14px;
-    }
-    
-    .nav-text {
-        display: none; /* Приховуємо текст на малих екранах */
-    }
-    
-    .nav-dot {
-        margin-right: 0;
-        width: 10px;
-        height: 10px;
-    }
-    
-    .vertical-nav a.active .nav-dot {
-        width: 14px;
-        height: 14px;
-    }
-    
-    /* Головна секція */
-    .title {
-        font-size: 24px;
-        top: 45%;
-    }
-    
-    .subtitle {
-        font-size: 16px;
-        top: 55%;
-    }
-    
-    .logo {
-        width: 100px;
-        height: 100px;
-    }
-    
-    /* Секція про нас */
-    .about-section {
-        padding: 15px;
-    }
-    
-    .about-content h2 {
-        font-size: 22px;
-    }
-    
-    .about-content p {
-        font-size: 13px;
-    }
-    
-    .about-image {
-        height: 300px;
-    }
-    
-    /* Вкладки */
-    .section-title h2 {
-        font-size: 22px;
-    }
-    
-    .tab-buttons button {
-        font-size: 12px;
-        padding: 5px 8px;
-    }
-    
-    /* Акордеон */
-    .accordion {
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-    
+  .title {
+    font-size: 28px;
+    white-space: normal;
+    width: 90%;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    white-space: normal;
+    width: 90%;
+  }
+
+  .logo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .about-section {
+    padding: 20px 15px;
+    margin-top: 150px;
+  }
+
+  .about-content h2 {
+    font-size: 24px;
+  }
+
+  .about-content p {
+    font-size: 14px;
+  }
+
+  .about-image {
+    height: 300px;
+  }
+
+  .accordion {
+    width: 95%;
+  }
+
+  /* Mobile accordion fixes */
+  @media (max-width: 768px) {
     .accordion dt {
-        padding: 8px;
-        font-size: 14px;
+      padding: 15px 10px;
+      font-size: 16px;
+      cursor: pointer;
+      touch-action: manipulation;
     }
-    
+
     .nested-accordion dt {
-        font-size: 13px;
+      padding: 12px 8px;
+      font-size: 14px;
+      cursor: pointer;
+      touch-action: manipulation;
     }
-    
-    .nested-accordion dd {
-        font-size: 12px;
-        width: calc(100% - 20px);
+
+    .accordion dd.active,
+    .nested-accordion dd.active {
+      display: block !important;
+      opacity: 1 !important;
+      transform: translateY(0) !important;
     }
-    
-    .accordion dd.active, .nested-accordion dd.active {
-        width: calc(100% - 20px);
-        padding: 8px;
-    }
-    
-    /* Галерея */
-    .gallery-container {
-        padding: 10px;
-    }
-    
-    .text-block {
-        padding: 15px;
-        min-height: 150px;
-    }
-    
-    .text-block h3 {
-        font-size: 18px;
-    }
-    
-    .text-block p {
-        font-size: 13px;
-    }
-    
-    .slide {
-        height: 250px;
-    }
-    
-    .controls {
-        margin-right: 10px;
-    }
-    
-    .controls button {
-        width: 30px;
-        height: 30px;
-        font-size: 14px;
-    }
-    
-    .overlay h3 {
-        font-size: 18px;
-    }
-    
-    .overlay p {
-        font-size: 14px;
-    }
-    
-    /* Футер */
-    footer {
-        padding: 15px 0;
-    }
-    
-    .footer-contacts h3 {
-        font-size: 18px;
-    }
-    
-    .footer-contacts p {
-        font-size: 13px;
-    }
-    
-    .social-icons a img {
-        width: 25px;
-        margin: 8px;
-    }
-    
-    .footer-map iframe {
-        height: 200px;
-    }
+  }
+
+  .accordion dt {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .nested-accordion dt {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .slide {
+    height: 250px;
+  }
+
+  .controls button {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+
+  .overlay p {
+    font-size: 16px;
+  }
+
+  .vertical-nav {
+    left: 8px;
+  }
+
+  .nav-text {
+    display: none;
+  }
+
+  .nav-dot {
+    margin-right: 0;
+  }
 }
 
-/* Малі смартфони */
+/* Передзавантаження акордеонів */
+.accordion-preloader {
+  position: relative;
+  overflow: hidden;
+}
+
+.accordion-preloader::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: loading 1.5s infinite;
+  z-index: 1;
+}
+
+@keyframes loading {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.accordion dd {
+  min-height: 0;
+  transition: min-height 0.3s ease, opacity 0.3s ease;
+}
+
+.accordion dd.loading {
+  min-height: 100px;
+  background: #f8f9fa;
+  position: relative;
+}
+
+.accordion dd.loading::after {
+  content: "Завантаження...";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #666;
+  font-style: italic;
+}
+
+.accordion dt,
+.nested-accordion dt {
+  will-change: background-color, color;
+}
+
+.accordion dd,
+.nested-accordion dd {
+  will-change: max-height, opacity, transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* ===== ПОКРАЩЕННЯ МОБІЛЬНИХ АКОРДЕОНІВ ===== */
+@media (max-width: 768px) {
+  .accordion {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  .accordion dt {
+    padding: 15px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    touch-action: manipulation;
+    background-color: #f3f3f3;
+    border: none;
+    margin: 8px 0;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .accordion dt:hover,
+  .accordion dt:active {
+    background-color: #9d182f;
+    color: white;
+  }
+
+  .accordion dt::after {
+    content: "▼";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    transition: transform 0.3s ease;
+  }
+
+  .accordion dt.active::after {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  .nested-accordion dt {
+    padding: 12px 10px;
+    font-size: 15px;
+    cursor: pointer;
+    touch-action: manipulation;
+    background-color: #dcdcdc;
+    border: none;
+    margin: 6px 0;
+    border-radius: 0;
+    position: relative;
+  }
+
+  .nested-accordion dt:hover,
+  .nested-accordion dt:active {
+    background-color: #9d182f;
+    color: white;
+  }
+
+  .nested-accordion dt::after {
+    content: "▼";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  .nested-accordion dt.active::after {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  .accordion dd.active,
+  .nested-accordion dd.active {
+    display: block !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 0;
+    margin: 8px 0;
+    padding: 15px;
+  }
+
+  .split-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .content-gallery {
+    order: 1;
+    height: 200px;
+    margin-top: 0;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: none;
+    border: 1px solid #e0e0e0;
+  }
+
+  .content-text {
+    order: 2;
+    padding: 0;
+  }
+
+  .content-text p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-align: left;
+  }
+
+  .content-text ul {
+    margin-bottom: 18px;
+    padding-left: 20px;
+  }
+
+  .content-text ul li {
+    font-size: 14px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .details-link {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 0;
+    margin-top: 15px;
+    background-color: #9d182f;
+    box-shadow: none;
+    transition: all 0.3s ease;
+  }
+
+  .details-link:hover {
+    background-color: #7a1023;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .tab-buttons {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 0 10px;
+  }
+
+  .tab-buttons button {
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 0;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    color: #333;
+  }
+
+  .tab-buttons button.active {
+    font-weight: bold;
+    border-bottom: 3px solid #d0d0d0;
+    color: #951825;
+    background: none;
+  }
+
+  .tab-buttons button:hover {
+    background-color: #f0f0f0;
+  }
+
+  .tab-buttons button.active:hover {
+    background-color: #f0f0f0;
+  }
+
+  .nested-accordion dd {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 15px !important;
+    margin-left: 0 !important;
+  }
+
+  .nested-accordion dd.active {
+    width: 100% !important;
+    margin: 8px 0 !important;
+    padding: 15px !important;
+    margin-left: 0 !important;
+  }
+}
+
 @media (max-width: 480px) {
-    /* Хедер */
-    header {
-        flex-direction: column;
-        padding: 5px 0;
-    }
-    
-    .phone-numbers {
-        order: 2;
-        margin: 5px 0;
-    }
-    
-    .ukd-logo {
-        order: 1;
-        margin: 5px 0;
-        border-left: none;
-        padding-left: 0;
-    }
-    
-    nav {
-        order: 3;
-        text-align: center;
-    }
-    
-    nav ul {
-        padding: 0;
-    }
-    
-    nav ul li {
-        margin: 2px;
-    }
-    
-    /* Вертикальна навігація */
-    .vertical-nav {
-        left: 5px;
-    }
-    
-    .vertical-nav ul {
-        gap: 12px;
-    }
-    
-    /* Головна секція */
-    .title {
-        font-size: 20px;
-        top: 45%;
-    }
-    
-    .subtitle {
-        font-size: 14px;
-        top: 55%;
-    }
-    
-    .logo {
-        width: 80px;
-        height: 80px;
-    }
-    
-    /* Секція про нас */
-    .about-section {
-        padding: 10px;
-    }
-    
-    .about-content h2 {
-        font-size: 20px;
-    }
-    
-    .about-content p {
-        font-size: 12px;
-    }
-    
-    .about-image {
-        height: 250px;
-    }
-    
-    /* Вкладки */
-    .section-title h2 {
-        font-size: 20px;
-    }
-    
-    /* Акордеон */
-    .accordion {
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-    
-    /* Галерея */
-    .slide {
-        height: 200px;
-    }
+  .accordion {
+    padding: 0 5px;
+  }
+
+  .accordion dt {
+    padding: 14px 10px;
+    font-size: 15px;
+    margin: 6px 0;
+  }
+
+  .nested-accordion dt {
+    padding: 12px 8px;
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .accordion dd.active,
+  .nested-accordion dd.active {
+    padding: 12px;
+    margin: 6px 0;
+  }
+
+  .content-text p {
+    font-size: 14px;
+  }
+
+  .content-text ul li {
+    font-size: 13px;
+  }
+
+  .content-gallery {
+    height: 180px;
+  }
+
+  .details-link {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .tab-buttons {
+    gap: 8px;
+    padding: 0 5px;
+  }
+
+  .tab-buttons button {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
 }
 
-/* Дуже малі екрани */
-@media (max-width: 320px) {
-    /* Хедер */
-    .ukd-logo img {
-        height: 30px;
-    }
-    
-    nav a {
-        font-size: 11px;
-    }
-    
-    /* Вертикальна навігація */
-    .vertical-nav {
-        left: 3px;
-    }
-    
-    .vertical-nav ul {
-        gap: 10px;
-    }
-    
-    .nav-dot {
-        width: 8px;
-        height: 8px;
-    }
-    
-    .vertical-nav a.active .nav-dot {
-        width: 12px;
-        height: 12px;
-    }
-    
-    /* Головна секція */
-    .title {
-        font-size: 18px;
-    }
-    
-    .subtitle {
-        font-size: 12px;
-    }
-    
-    /* Галерея */
-    .slide {
-        height: 180px;
-    }
-    
-    .controls button {
-        width: 25px;
-        height: 25px;
-        font-size: 12px;
-    }
+@media (max-width: 768px) {
+  .controls {
+    display: none;
+  }
 }
 
-/* Для пристроїв з сенсорним екраном - збільшуємо область натискання */
-@media (pointer: coarse) {
-    /* Вертикальна навігація */
-    .vertical-nav a {
-        padding: 5px;
-    }
-    
-    .nav-dot {
-        width: 12px;
-        height: 12px;
-    }
-    
-    .vertical-nav a.active .nav-dot {
-        width: 16px;
-        height: 16px;
-    }
-    
-    /* Кнопки та інтерактивні елементи */
-    .tab-buttons button,
-    .controls button,
-    .accordion dt,
-    .nested-accordion dt,
-    nav a,
-    .phone-numbers a {
-        padding: 10px;
-        min-height: 44px; /* Мінімальна висота для зручного натискання */
-    }
-    
-    /* Збільшуємо відступи для акордеону */
-    .accordion dt {
-        padding: 12px;
-    }
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .text-block {
+    width: 100%;
+    order: 2;
+    padding: 15px;
+  }
+
+  .slider-container {
+    width: 100%;
+    order: 1;
+  }
+
+  .slide {
+    width: 100%;
+    height: 300px;
+  }
 }
 
-/* Орієнтація екрану */
-@media (orientation: landscape) and (max-height: 500px) {
-    /* Зменшуємо висоту головної секції для ландшафтної орієнтації на малих екранах */
-    main, .container {
-        height: auto;
-        min-height: 100vh;
-    }
-    
-    .logo {
-        position: relative;
-        top: 10%;
-        margin: 20px auto;
-    }
-    
-    .title {
-        position: relative;
-        top: auto;
-        margin: 10px auto;
-    }
-    
-    .subtitle {
-        position: relative;
-        top: auto;
-        margin: 10px auto;
-    }
+@media (max-width: 768px) {
+  .accordion {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .accordion dd.active,
+  .nested-accordion dd.active {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 15px !important;
+    margin-left: 0 !important;
+  }
+
+  .nested-accordion dd {
+    width: 100% !important;
+    margin: 0 !important;
+    padding-left: 15px !important;
+  }
 }
