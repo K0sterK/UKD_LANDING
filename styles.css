@@ -1,5 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap");
 
+/* GothamPro Font */
+@font-face {
+  font-family: "Gotham Pro";
+  src: url("fonts/GothamPro-Regular.woff2") format("woff2"), url("fonts/GothamPro-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham Pro";
+  src: url("fonts/GothamPro-Medium.woff2") format("woff2"), url("fonts/GothamPro-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham Pro";
+  src: url("fonts/GothamPro-Bold.woff2") format("woff2"), url("fonts/GothamPro-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -556,6 +581,7 @@ main {
   justify-content: center;
   position: relative;
   overflow: hidden;
+  clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
 }
 
 .about-image img {
@@ -1492,6 +1518,7 @@ footer {
     width: 100%;
     max-width: 400px;
     height: 300px;
+    clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
   }
 
   .accordion {
@@ -1946,6 +1973,13 @@ footer {
   .gallery-details-link {
     padding: 10px 15px;
     font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-image {
+    height: 250px;
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
   }
 }
 

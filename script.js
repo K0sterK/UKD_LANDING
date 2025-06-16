@@ -20,6 +20,7 @@ $(document).ready(() => {
   
     // ПОКРАЩЕНЕ автоматичне переключення фото в акордеонах
     initializeAccordionSliders()
+    
   
     // ФУНКЦІЯ 1: ВІДСТЕЖЕННЯ FACEBOOK PIXEL
     function initializeTracking() {
