@@ -1,11 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap");
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Gotham Pro", sans-serif;
   margin: 0;
   padding: 0;
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
 }
 
 /*Хедер прокруток*/
@@ -269,7 +274,7 @@ nav a:hover {
   }
 }
 
-/* Вертикальна навігація */
+/* Вертикальна навігація - приховати на мобільних */
 .vertical-nav {
   position: fixed;
   left: 24px;
@@ -341,23 +346,35 @@ nav a:hover {
   color: #333;
 }
 
+/* Приховати вертикальну навігацію на мобільних */
+@media (max-width: 768px) {
+  .vertical-nav {
+    display: none;
+  }
+}
+
 /* ======= СТИЛІ ДЛЯ ГОЛОВНОЇ СЕКЦІЇ ======= */
 main {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   background: url("src/MainMenu.jpg") no-repeat center center / cover;
   background-size: cover;
+  background-attachment: fixed;
   text-align: center;
   width: 100%;
   position: relative;
   margin-top: 70px;
+  padding: 40px 20px;
 }
 
 @media (max-width: 768px) {
   main {
     margin-top: 100px;
+    background-attachment: scroll;
+    min-height: 80vh;
+    padding: 20px 15px;
   }
 }
 
@@ -367,8 +384,11 @@ main {
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: 100vh;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   position: relative;
+  z-index: 2;
 }
 
 .logo {
@@ -377,27 +397,86 @@ main {
   background-image: url("src/Red-Vertical_logo.png");
   background-size: contain;
   background-repeat: no-repeat;
-  position: absolute;
-  top: 20%;
+  background-position: center;
+  margin-bottom: 30px;
+  flex-shrink: 0;
 }
 
 .title {
-  margin-top: 30px;
-  position: absolute;
-  top: 40%;
   font-size: 42px;
   font-weight: bold;
   color: white;
-  white-space: nowrap;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  line-height: 1.2;
+  max-width: 90%;
 }
 
 .subtitle {
-  margin-top: 30px;
-  position: absolute;
-  top: 50%;
   font-size: 25px;
   color: white;
-  white-space: nowrap;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  line-height: 1.3;
+  max-width: 90%;
+}
+
+/* Адаптивність для головної секції */
+@media (max-width: 992px) {
+  .logo {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 25px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .subtitle {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 0;
+  }
+
+  .logo {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 20px;
+  }
+
+  .title {
+    font-size: 28px;
+    margin-bottom: 15px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 15px;
+  }
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
 }
 
 /*About ukd*/
@@ -789,12 +868,6 @@ h2 {
 }
 
 /*===================gallery=============*/
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .gallery-container {
   display: flex;
   flex-direction: column;
@@ -806,6 +879,7 @@ h2 {
   width: 100%;
   max-width: 1440px;
   margin: auto;
+  overflow: hidden;
 }
 
 .controls {
@@ -860,11 +934,13 @@ h2 {
   width: 900px;
   overflow: hidden;
   position: relative;
+  touch-action: pan-y;
 }
 
 .slider {
   display: flex;
   transition: transform 0.5s ease-in-out;
+  will-change: transform;
 }
 
 .slide {
@@ -1059,16 +1135,6 @@ footer {
   overflow: hidden;
 }
 
-footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #ffffff 0%, #f0f0f0 50%, #ffffff 100%);
-}
-
 .footer-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1113,13 +1179,15 @@ footer::before {
   display: flex;
   align-items: flex-start;
   margin-bottom: 15px;
-  padding: 10px;
+  padding: 15px;
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
 .contact-item:hover {
   background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
 }
 
 .contact-icon {
@@ -1191,7 +1259,7 @@ footer::before {
   padding: 10px 15px;
   background: rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
   text-decoration: none;
   color: white;
   min-width: 100px;
@@ -1244,6 +1312,7 @@ footer::before {
   height: 300px;
   border: none;
   display: block;
+  border-radius: 8px;
 }
 
 @media (max-width: 768px) {
@@ -1403,30 +1472,6 @@ footer::before {
 
 /* ===== ЗАГАЛЬНА АДАПТИВНІСТЬ ===== */
 @media (max-width: 768px) {
-  .container {
-    height: 70vh;
-    padding: 20px;
-  }
-
-  .title {
-    font-size: 24px;
-    white-space: normal;
-    width: 90%;
-    text-align: center;
-  }
-
-  .subtitle {
-    font-size: 18px;
-    white-space: normal;
-    width: 90%;
-    text-align: center;
-  }
-
-  .logo {
-    width: 120px;
-    height: 120px;
-  }
-
   .about-section {
     flex-direction: column;
     text-align: center;
@@ -1547,23 +1592,6 @@ footer::before {
 
 /* Покращення для мобільних */
 @media (max-width: 576px) {
-  .title {
-    font-size: 28px;
-    white-space: normal;
-    width: 90%;
-  }
-
-  .subtitle {
-    font-size: 18px;
-    white-space: normal;
-    width: 90%;
-  }
-
-  .logo {
-    width: 120px;
-    height: 120px;
-  }
-
   .about-section {
     padding: 20px 15px;
     margin-top: 150px;
@@ -1583,30 +1611,6 @@ footer::before {
 
   .accordion {
     width: 95%;
-  }
-
-  /* Mobile accordion fixes */
-  @media (max-width: 768px) {
-    .accordion dt {
-      padding: 15px 10px;
-      font-size: 16px;
-      cursor: pointer;
-      touch-action: manipulation;
-    }
-
-    .nested-accordion dt {
-      padding: 12px 8px;
-      font-size: 14px;
-      cursor: pointer;
-      touch-action: manipulation;
-    }
-
-    .accordion dd.active,
-    .nested-accordion dd.active {
-      display: block !important;
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-    }
   }
 
   .accordion dt {
@@ -1632,86 +1636,14 @@ footer::before {
   .overlay p {
     font-size: 16px;
   }
-
-  .vertical-nav {
-    left: 8px;
-  }
-
-  .nav-text {
-    display: none;
-  }
-
-  .nav-dot {
-    margin-right: 0;
-  }
 }
 
-/* Передзавантаження акордеонів */
-.accordion-preloader {
-  position: relative;
-  overflow: hidden;
-}
-
-.accordion-preloader::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  animation: loading 1.5s infinite;
-  z-index: 1;
-}
-
-@keyframes loading {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-.accordion dd {
-  min-height: 0;
-  transition: min-height 0.3s ease, opacity 0.3s ease;
-}
-
-.accordion dd.loading {
-  min-height: 100px;
-  background: #f8f9fa;
-  position: relative;
-}
-
-.accordion dd.loading::after {
-  content: "Завантаження...";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #666;
-  font-style: italic;
-}
-
-.accordion dt,
-.nested-accordion dt {
-  will-change: background-color, color;
-}
-
-.accordion dd,
-.nested-accordion dd {
-  will-change: max-height, opacity, transform;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-}
-
-/* ===== ПОКРАЩЕННЯ МОБІЛЬНИХ АКОРДЕОНІВ ===== */
+/* ===== ПОКРАЩЕННЯ МОБІЛЬНИХ АКОРДЕОНІВ БЕЗ СТРІЛОК ===== */
 @media (max-width: 768px) {
   .accordion {
     width: 100%;
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 0;
   }
 
   .accordion dt {
@@ -1733,20 +1665,6 @@ footer::before {
     color: white;
   }
 
-  .accordion dt::after {
-    content: "▼";
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 14px;
-    transition: transform 0.3s ease;
-  }
-
-  .accordion dt.active::after {
-    transform: translateY(-50%) rotate(180deg);
-  }
-
   .nested-accordion dt {
     padding: 12px 10px;
     font-size: 15px;
@@ -1763,20 +1681,6 @@ footer::before {
   .nested-accordion dt:active {
     background-color: #9d182f;
     color: white;
-  }
-
-  .nested-accordion dt::after {
-    content: "▼";
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 12px;
-    transition: transform 0.3s ease;
-  }
-
-  .nested-accordion dt.active::after {
-    transform: translateY(-50%) rotate(180deg);
   }
 
   .accordion dd.active,
@@ -1833,7 +1737,7 @@ footer::before {
     padding: 10px 20px;
     font-size: 14px;
     border-radius: 0;
-    margin-top: 15px;
+    margin-top: 10px;
     background-color: #9d182f;
     box-shadow: none;
     transition: all 0.3s ease;
@@ -1894,6 +1798,85 @@ footer::before {
   }
 }
 
+/* ===== МОБІЛЬНА ГАЛЕРЕЯ ===== */
+@media (max-width: 768px) {
+  .controls {
+    display: none;
+  }
+
+  .content {
+    flex-direction: column;
+    gap: 0;
+    margin-top: 20px;
+  }
+
+  .gallery-container {
+    padding: 20px 10px;
+  }
+
+  .slider-container {
+    width: 100%;
+    order: 1;
+    margin-bottom: 0;
+    touch-action: pan-x;
+  }
+
+  .slide {
+    width: 100%;
+    height: 250px;
+    margin-right: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-block {
+    width: 100%;
+    order: 2;
+    padding: 20px;
+    background: #fff;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: -8px;
+    min-height: auto;
+  }
+
+  .text-block h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  .text-block p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 0;
+    flex-grow: 0;
+  }
+
+  .gallery-details-link {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    padding: 12px 20px;
+    background-color: #9d182f;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+
+  .gallery-details-link:hover {
+    background-color: #7a1023;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(157, 24, 47, 0.3);
+  }
+}
+
 @media (max-width: 480px) {
   .accordion {
     padding: 0 5px;
@@ -1943,34 +1926,26 @@ footer::before {
     font-size: 13px;
     padding: 8px 12px;
   }
-}
 
-@media (max-width: 768px) {
-  .controls {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .content {
-    flex-direction: column;
-    gap: 20px;
+  .slide {
+    height: 200px;
   }
 
   .text-block {
-    width: 100%;
-    order: 2;
     padding: 15px;
   }
 
-  .slider-container {
-    width: 100%;
-    order: 1;
+  .text-block h3 {
+    font-size: 18px;
   }
 
-  .slide {
-    width: 100%;
-    height: 300px;
+  .text-block p {
+    font-size: 13px;
+  }
+
+  .gallery-details-link {
+    padding: 10px 15px;
+    font-size: 13px;
   }
 }
 
